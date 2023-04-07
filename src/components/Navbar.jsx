@@ -1,10 +1,10 @@
 import React from 'react'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
+import  ConnectionButton  from '../components/connectionButton'
 const Navbar = () => {
   return (
     <div className='flex justify-center items-center py-3 border-b border-gray-300'>
        
-        <ConnectButton />
+        <ConnectionButton />
       
     </div>
   )
