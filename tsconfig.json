@@ -15,10 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-<<<<<<< HEAD
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/index.jsx"],
-=======
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pagelayout/pagelayout.jsx"],
->>>>>>> 4ad47f72def4f14034211ac3fee972b4aa3b095d
   "exclude": ["node_modules"]
 }
