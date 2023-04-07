@@ -1,12 +1,11 @@
-import Footer from "@components/Footer";
-import Navbar from "@components/Navbar";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import React from "react";
 
-
-
-
-
-const PageLayout = ({children}) =>{
+interface Ipage{
+    children: JSX.Element,
+}
+const PageLayout = ({children}: Ipage) =>{
 
     return(
         <div>
