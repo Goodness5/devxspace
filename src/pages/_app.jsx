@@ -4,6 +4,7 @@ import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { arbitrum, goerli, mainnet, optimism, polygon } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import '../../styles/globals.css';
+import Pagelayout from '../pagelayout/Pagelayout';
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
@@ -32,7 +33,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
+      <Pagelayout>
         <Component {...pageProps} />
+      </Pagelayout>
       </RainbowKitProvider>
     </WagmiConfig>
   );

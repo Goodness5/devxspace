@@ -1,6 +1,4 @@
 import React from 'react';
-
-
 const Footer = ()=>{
     return(
         <div className="footer w-full absolute bottom-0 bg-blue-200">
