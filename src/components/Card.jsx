@@ -50,7 +50,7 @@ const Card = (prop) => {
             <h2 className='text-fair-blue text-2xl font-bold px-4'>{prop.skill}</h2>
             <div className='flex justify-between'>
             <h2 className='text-red font-bold text-2xl pl-4 pt-1'>From {prop.price}</h2>
-            <button className="px-7 py-2 border border-blue-300 rounded-lg mr-4 bg-regal-blue text-white" onClick={handleClickOpen} >HIRE</button>
+            <button className="px-7 py-2 border border-blue-300 rounded-lg mr-4 bg-[#052C5B] text-white" onClick={handleClickOpen} >HIRE</button>
             </div>
         </div>
     
