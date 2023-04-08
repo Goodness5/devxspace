@@ -4,7 +4,7 @@ import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { arbitrum, goerli, mainnet, optimism, polygon } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import '../../styles/globals.css';
-import Pagelayout from '../pagelayout/Pagelayout';
+import Pagelayout from '../pagelayout/pagelayout';
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
