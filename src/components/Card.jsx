@@ -28,8 +28,8 @@ const Card = (prop) => {
 
     return (
 
-    <div className='mt-10 ml-20 mr-10 mb-10 lg:w-[25%]  md:w-[30%] shadow-xl shadow-cyan-500/50 rounded-lg pb-10 bg-white'>
-        <img src={prop.imgSrc} className='w-full h-3/5'/>
+    <div className='mt-10 mx-10 mb-10 lg:ml-20 lg:w-[25%]  md:w-[30%] shadow-xl shadow-cyan-500/50 rounded-lg pb-10 bg-white'>
+        <img src={prop.imgSrc} className='w-full h-3/5 rounded-t-lg'/>
                 <div className='flex justify-between w-full'>
                         <div className='flex w-full'>
                             <div>
