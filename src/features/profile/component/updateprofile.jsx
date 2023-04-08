@@ -20,7 +20,7 @@ const UpdateProfileCard = () => {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-md p-4">
+    <div className=" bg-light-blue bg-opacity-50 rounded-md p-4">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2" htmlFor="name">
@@ -51,7 +51,8 @@ const UpdateProfileCard = () => {
           />
         </div>
 
-        <button type="submit" className='p-4 bg-regal-blue rounded-lg hover:bg-white hover:border-solid to-fair-blue'>Update profile</button>
+        <button type="submit" className='p-2 bg-regal-blue border border-none text-white hover:border-solid hover:text-fair-blue
+         rounded-lg hover:bg-white to-fair-blue'>Update profile</button>
       </form>
     </div>
   );
