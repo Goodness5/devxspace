@@ -16,13 +16,13 @@ const Navbar = () => {
         <span className="mr-2">Home</span>
       </div>
 
-      <div className="flex items-center cursor-pointer p-4 flex-col" onMouseEnter={() => handleDropdownClick('explore')} onMouseLeave={() => handleDropdownClick('')}>
-        <span className="mr-2">Dashboard</span>
-      </div>
+      <Link href='/profile' className="flex items-center cursor-pointer p-4 flex-col">
+        Dashboard
+      </Link>
 
-      <div className="flex items-center cursor-pointer p-4 flex-col" onMouseEnter={() => handleDropdownClick('pages')} onMouseLeave={() => handleDropdownClick('')}>
+      <Link href='/Search' className="flex items-center cursor-pointer p-4 flex-col">
         <span className="mr-2">Hire</span>
-      </div>
+      </Link>
 
       <div className="flex items-center cursor-pointer p-4" onMouseEnter={() => handleDropdownClick('home')} onMouseLeave={() => handleDropdownClick('')}>
         <span className="mr-2">update profile</span>

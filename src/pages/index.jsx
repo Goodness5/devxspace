@@ -4,11 +4,9 @@ import PageLayout from '../pagelayout/pagelayout'
 const Home = () => {
   return (
     <div>
-    <PageLayout>
     <main>
        THIS IS HOME
       </main>
-    </PageLayout>
       
     </div>
   );

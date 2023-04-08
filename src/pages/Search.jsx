@@ -8,7 +8,7 @@ const Search = () => {
       <div className="bg-regal-blue h-52 ">
         <div className="w-2/3 flex flex-col ml-32">
           <h2 className="text-4xl font-bold mt-10 text-white">
-            Search Services
+            Search Jobs
           </h2>
           <p className="text-2xl text-light-blue italic">Browse All Services</p>
         </div>
