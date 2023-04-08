@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Connect from "./Connect";
+import Link from 'next/link';
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState('');
