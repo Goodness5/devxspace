@@ -2,38 +2,32 @@ import React, { useState } from 'react';
 import Connect from "./Connect";
 
 const Navbar = () => {
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showDropdown, setShowDropdown] = useState('');
 
-  const handleDropdownClick = () => {
-    setShowDropdown(!showDropdown);
+  const handleDropdownClick = (content) => {
+    setShowDropdown(showDropdown === content ? '' : content);
   };
 
   return (
     <div className='bg-blue-50 flex flex-row justify-end '>
 
-        <div className="flex items-center cursor-pointer p-4">
-          <span className="mr-2">Home</span>
-        </div>
-
-        <div className="flex items-center cursor-pointer p-4" onClick={handleDropdownClick}>
-          <span className="mr-2">Explore</span>
-        <div className={`flex flex-col justify-center bg-white shadow-lg ${showDropdown ? 'block' : 'hidden'}`}>
-          <a href="#" className="px-2 hover:bg-gray-100">Link 1</a>
-          <a href="#" className="px-2 hover:bg-gray-100">Link 2</a>
-          <a href="#" className="px-2 hover:bg-gray-100">Link 3</a>
-        </div>
+      <div className="flex items-center cursor-pointer p-4" onMouseEnter={() => handleDropdownClick('home')} onMouseLeave={() => handleDropdownClick('')}>
+        <span className="mr-2">Home</span>
       </div>
-        <div className="flex items-center cursor-pointer p-4" onClick={handleDropdownClick}>
-          <span className="mr-2">Pages</span>
-         
-         <div className={`right-0 top-10 w-40 bg-white shadow-lg ${showDropdown ? 'block' : 'hidden'}`}>
-          <a href="#" className="px-2 hover:bg-gray-100">Link 1</a>
-          <a href="#" className="px-2 hover:bg-gray-100">Link 2</a>
-          <a href="#" className="px-2 hover:bg-gray-100">Link 2</a>
-          </ div>
 
-    <Connect />
-    </div>
+      <div className="flex items-center cursor-pointer p-4 flex-col" onMouseEnter={() => handleDropdownClick('explore')} onMouseLeave={() => handleDropdownClick('')}>
+        <span className="mr-2">Dashboard</span>
+      </div>
+
+      <div className="flex items-center cursor-pointer p-4 flex-col" onMouseEnter={() => handleDropdownClick('pages')} onMouseLeave={() => handleDropdownClick('')}>
+        <span className="mr-2">Hire</span>
+      </div>
+
+      <div className="flex items-center cursor-pointer p-4" onMouseEnter={() => handleDropdownClick('home')} onMouseLeave={() => handleDropdownClick('')}>
+        <span className="mr-2">update profile</span>
+      </div>
+
+      <Connect />
     </div>
   )
 }
