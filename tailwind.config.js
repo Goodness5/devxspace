@@ -23,7 +23,8 @@ module.exports = {
       'white' : 'rgb(255 255 255);',
       'light-blue' : 'rgb(114,138,251)',
       'fair-blue' : 'rgb(45,67,121)',
-      'red': 'rgb(223,60,49)'
+      'red': 'rgb(223,60,49)',
+      'grey' : 'rgb(239, 242, 249)'
     },
     screens: {
       'sm': '640px',
