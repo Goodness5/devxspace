@@ -36,24 +36,22 @@ const UpdateProfileCard = () => {
           />
         </div>
 
-        
         <div className="mb-4 flex items-center rounded-full">
           <label className="block text-gray-700 font-bold mr-2" htmlFor="avatar">
             Avatar
           </label>
-            
-              <img className="rounded-full " src={avatar} alt="Default profile picture" />
-              <input
-                type="file"
-                id="avatar"
-                className="hidden"
-                // accept="image/png, image/jpeg"
-                onChange={handleAvatarChange}
-              />
+
+          <img className="rounded-full " src={avatar} alt="Default profile picture" />
+          <input
+            type="file"
+            id="avatar"
+            className="hidden"
+            // accept="image/png, image/jpeg"
+            onChange={handleAvatarChange}
+          />
         </div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Update Profile
-        </button>
+
+        <button type="submit" className='p-4 bg-regal-blue rounded-lg hover:bg-white hover:border-solid to-fair-blue'>Update profile</button>
       </form>
     </div>
   );
