@@ -11,6 +11,8 @@ const Card = (prop) => {
     const [isActive, setIsActive] = useState(false);
     const [dialogState, setDialog] = useState(false);
     const [open, setOpen] = useState(false);
+    const [title, setTitle] = useState('');
+    const [jobDetails, setJobDetails] = useState('')
     
     const handleClick = () => {
         setIsActive(!isActive);
@@ -25,6 +27,20 @@ const Card = (prop) => {
       const handleClose = () => {
         setOpen(false);
       };
+
+    const handleTitleChange =(event) =>{
+        setTitle(event.target.value);
+    }
+    const handleDetailsChange = (event) =>{
+        setJobDetails(event.target.value);
+    }
+    const handleSubmit = (event) =>{
+        console.log(
+            title,
+            jobDetails
+        );
+        setOpen(false)
+    }
 
     return (
 
@@ -61,13 +77,13 @@ const Card = (prop) => {
         <DialogContentText>
             Specify the nature of the task, be as detailed as possible. Payment won't be made until offer is accepted
           </DialogContentText>
-          <TextField autoFocus margin="dense" id="name" label="Title" type="text" fullWidth variant="standard"/>
-          <TextField autoFocus margin="dense" id="name" label="Details" type="text" fullWidth variant="standard"/>
+          <TextField autoFocus margin="dense" id="name" label="Title" type="text"  value ={title} fullWidth variant="standard" onChange={handleTitleChange}/>
+          <TextField autoFocus margin="dense" id="name" label="Details" type="text" value={jobDetails} fullWidth variant="standard" onChange={handleDetailsChange}/>
         </DialogContent>
         <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Proceed</Button>
-        </DialogActions>
+          <Button onClick={handleSubmit} type='submit'>Proceed</Button>
+        </DialogActions> 
       </Dialog>
     </div>
     </div>
