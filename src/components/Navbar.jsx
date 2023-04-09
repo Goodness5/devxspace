@@ -41,7 +41,7 @@ const Navbar = () => {
 
 
       {showUpdateProfile && (
-        <div className="fixed flex flex-col z-50 bg-opacity-50 bg-regal-blue">
+        <div className="fixed flex flex-col z-50 bg-opacity-50 w-full">
           <div className="flex justify-end">
             <div className="cursor-pointer p-4 text-white font-bold" style={{'right': 0}} onClick={handleUpdateProfileClose}>X</div>
           </div>
