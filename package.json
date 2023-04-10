@@ -12,6 +12,7 @@
     "@babel/core": "^7.21.4",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@headlessui/react": "^1.7.13",
     "@mui/material": "^5.11.16",
     "@rainbow-me/rainbowkit": "^0.12.7",
     "babel-preset-next": "^1.4.0",

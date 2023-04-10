@@ -18,27 +18,32 @@ const Navbar = () => {
 
   return (
     <div>
-    <div className='bg-blue-50 flex flex-row justify-end '>
+      <div className='bg-blue-50 flex flex-row justify-end'>
+        <div className=' ml-40 flex'>  
+                
+          <Link href='/' className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
+          Home
+        </Link>
 
-      <div className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
-        <span className="mr-2">Home</span>
+        <Link href='/profile' className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
+          Dashboard
+        </Link>
+
+        <Link href='/Search' className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
+          <span className="mr-2">find jobs</span>
+        </Link>
+
+        <div className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1" onClick={handleUpdateProfileClick}>
+          <span className="mr-2">update profile</span>
+        </div>
+        </div>
+
+
+        <div className="ml-auto mr-10 flex items-center">
+          <Connect />
+        </div>
+
       </div>
-
-      <Link href='/profile' className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
-        Dashboard
-      </Link>
-
-      <Link href='/Search' className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
-        <span className="mr-2">find jobs</span>
-      </Link>
-
-      <div className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1" onClick={handleUpdateProfileClick}>
-        <span className="mr-2">update profile</span>
-      </div>
-
-      <Connect />
-      </div>
-
 
       {showUpdateProfile && (
         <div className="fixed flex flex-col z-50 bg-opacity-50 w-full">
