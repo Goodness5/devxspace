@@ -31,7 +31,7 @@ const ProfileDashboard = () => {
         <section className="w-[80%] mt-5">
           <div className="w-[100%] bg-[#052C5B] h-14 rounded-lg flex items-center">
             <h2 className="text-[14px] font-medium text-[#FFFFFF] pl-6  leading-4 ">
-              Profile
+              Dashboard
             </h2>
           </div>
           <div className=" flex justify-between mt-5">
