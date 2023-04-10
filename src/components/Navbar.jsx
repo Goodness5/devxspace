@@ -94,10 +94,6 @@ const Navbar = () => {
         <Link href='/profile' className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
           Dashboard
         </Link>
-
-        <Link href='/Search' className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
-          <span className="mr-2">find jobs</span>
-        </Link>
         <Link
           href="/Search"
           className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1"
@@ -115,7 +111,6 @@ const Navbar = () => {
         <div className="ml-auto mr-10 flex items-center">
           <Connect />
         </div>
-        <Connect />
       </div>
 
       <div>
@@ -246,6 +241,8 @@ const Navbar = () => {
         </Dialog>
       </div>
     </div>
+    </div>
   );
 };
+
 export default Navbar;
