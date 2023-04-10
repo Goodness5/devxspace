@@ -1,14 +1,12 @@
 import Head from 'next/head';
-import PageLayout from '../pagelayout/pagelayout'
+import LandingPage from '../features/landingpage/LandingPage'
 
 const Home = () => {
   return (
-    <div>
-    <main>
-       THIS IS HOME
-      </main>
-      
-    </div>
+    
+
+      <LandingPage />
+    
   );
 };
 

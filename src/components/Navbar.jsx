@@ -84,18 +84,20 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="bg-blue-50 flex flex-row justify-end ">
-        <div className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
-          <span className="mr-2">Home</span>
-        </div>
+      <div className='bg-blue-50 flex flex-row justify-end'>
+        <div className=' ml-40 flex'>  
+                
+          <Link href='/' className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
+          Home
+        </Link>
 
-        <Link
-          href="/profile"
-          className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1"
-        >
+        <Link href='/profile' className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
           Dashboard
         </Link>
 
+        <Link href='/Search' className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
+          <span className="mr-2">find jobs</span>
+        </Link>
         <Link
           href="/Search"
           className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1"
@@ -110,6 +112,9 @@ const Navbar = () => {
           <span className="mr-2">Create profile</span>
         </div>
 
+        <div className="ml-auto mr-10 flex items-center">
+          <Connect />
+        </div>
         <Connect />
       </div>
 

@@ -17,3 +17,28 @@
     transition-duration: 1s;
     background-position: -2800px 0;
   }
+  .landing-top-img {
+    position: relative;
+    height: 100vh;
+  }
+  
+  .landing-top-img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../src/images/frelancer.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5; /* adjust the opacity as needed */
+  }
+  
+  .landing-top-img img {
+    object-fit: cover;
+  }
+  
+  
+  
