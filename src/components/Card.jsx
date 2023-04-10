@@ -77,7 +77,3 @@ const Card = (prop) => {
 }
 
 export default Card
-
-//image
-// avatar | Admin User | 0 order in Queue | loveEmo and Save
-//stars 

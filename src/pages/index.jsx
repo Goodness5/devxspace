@@ -1,11 +1,12 @@
 import Head from 'next/head';
-import LandingPage from '../features/landingpage/LandingPage'
+
+import LandingFeatures from '../features/landingpage/LandingFeatures';
 
 const Home = () => {
   return (
     
 
-      <LandingPage />
+      <LandingFeatures />
     
   );
 };
