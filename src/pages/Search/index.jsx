@@ -10,7 +10,7 @@ const Search = () => {
   return (
     <div className='relative' >
       <div className="bg-[#052C5B] h-52 ">
-        <div className="w-2/3 flex flex-col ml-32">
+        <div className="w-2/3 flex flex-col lg:ml-32 sm:ml-12 xsm:ml-12">
           <h2 className="text-4xl font-bold mt-10 text-white">
             Search Services
           </h2>

@@ -27,6 +27,7 @@ module.exports = {
       'grey' : 'rgb(239, 242, 249)'
     },
     screens: {
+      'xsm': '350px',
       'sm': '640px',
       'md': '768px',
       'lg': '1024px',
