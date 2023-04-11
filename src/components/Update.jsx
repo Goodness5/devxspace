@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import UpdateProfileCard from '../features/profile/component/updateprofile';
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -8,21 +8,25 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import FormControl from "@mui/material/FormControl";
+import { useAccount } from 'wagmi'
+import { toast } from "react-toastify";
+import useCreateProfile from "../features/profile/hooks/useCreateProfile";
 
 const Update = (props) => {
+  const { address } = useAccount()
   const [open, setOpen] = useState(false);
   const [freelanceFormOpen, setfreelanceFormOpen] = useState(false);
   const [buyerFormOpen, setBuyerFormOpen] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+
   const [userName, setUserName] = useState("");
-  const [address, setAddress] = useState("");
+
   const [about, setAbout] = useState("");
   const [skills, setSkills] = useState([]);
+  const [files, setFiles] = useState([]);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
   const handleClose = () => {
     setOpen(false);
   };
@@ -46,36 +50,58 @@ const Update = (props) => {
   const handleBuyerClose = () => {
     setBuyerFormOpen(false);
   };
-  const handleUserNameChange = (event) => {
-    setUserName(event.target.value);
-  };
-  const handleAboutChange = (event) => {
-    setAbout(event.target.value);
-  };
-  const handleSkillsChange = (event) => {
-    setSkills(event.target.value);
-  };
-  const handleFreeLanceSubmit = () => {
-    console.log({
-      firstName,
-      lastName,
-      userName,
-      skillLevel,
-      about,
+
+  const {mutate, isLoading, isError, isSuccess, error} = useCreateProfile()
+  const handleFreeLanceSubmit = (e) => {
+    e.preventDefault();
+    if(!address  ){
+      toast.error("Connect wallet address")
+      
+    }
+    if(userName === "" || about === "" || skills ===""){
+      toast.error("All fields Required")
+    }
+    const people={
+      username:userName,
+      avatar:files[0],
+      address,
       skills,
-    });
-    handleFreelanceClose(false);
+      about:about
+    }
+
+    mutate(people)
+   
+    
   };
 
-  const handleBuyerSubmit = () => {
-    console.log({
-      firstName,
-      lastName,
-      userName,
-      about,
-    });
-    handleBuyerClose(false);
+  const handleBuyerSubmit = (e) => {
+    e.preventDefault();
+    if(!address  ){
+      toast.error("Connect wallet address")
+      
+    }
+    if(userName === "" || about === ""){
+      toast.error("All fields Required")
+    }
+    const people={
+      username:userName,
+      avatar:files[0],
+      address,
+      about:about
+    }
+mutate(people)
+    
   };
+  useEffect(()=>{
+    if(isError){
+      toast.error(error.response.message)
+    }
+    if(isSuccess){
+      toast.success("Profile Created")
+      handleFreelanceClose(false);
+      handleBuyerClose(false);
+    }
+  },[isError, isSuccess, error])
 
   return (
     <div>
@@ -121,7 +147,7 @@ const Update = (props) => {
               type="text"
               fullWidth
               value={userName}
-              onChange={handleUserNameChange}
+              onChange={(e) => setUserName(e.target.value)}
               className="my-3"
             />
             <TextField
@@ -132,7 +158,7 @@ const Update = (props) => {
               multiline
               rows={4}
               value={about}
-              onChange={handleAboutChange}
+              onChange={(e) =>setAbout(e.target.value) }
               className="my-3"
             />
             <FormControl fullWidth margin="dense">
@@ -141,7 +167,7 @@ const Update = (props) => {
               label="Skill"
               type="text"
               value={skills}
-              onChange={handleSkillsChange}
+              onChange={(e) =>setSkills(e.target.value)}
               className="my-3"
             />
             </FormControl>
@@ -150,13 +176,13 @@ const Update = (props) => {
             <TextField
               type="file"
               variant="outlined"
-              // onChange={handleFreelanerFileInput}
+              onChange={(e)=>setFiles(e.target.files)}
             />
             </FormControl>
 
             <DialogActions className="h-4/6">
               <Button type="submit" onClick={handleFreeLanceSubmit}>
-                Submit
+               {isLoading ? "submiting..." : "Submit"}
               </Button>
               <Button onClick={handleFreelanceClose}>Cancel</Button>
             </DialogActions>
@@ -175,7 +201,7 @@ const Update = (props) => {
               type="text"
               fullWidth
               value={userName}
-              onChange={handleUserNameChange}
+              onChange={()=>setUserName(e.target.value)}
               className="my-3"
             />
             <TextField
@@ -186,19 +212,19 @@ const Update = (props) => {
               multiline
               rows={4}
               value={about}
-              onChange={handleAboutChange}
+              onChange={()=>setAbout(e.target.value)}
               className="my-3"
             />
              <FormControl fullWidth margin="dense">
             <TextField
               type="file"
               variant="outlined"
-              // onChange={handleBuyerFileInput}
+              onChange={(e)=>setFiles(e.target.files)}
             />
             </FormControl>
             <DialogActions className="h-4/6">
-              <Button type="submit" onClick={handleBuyerSubmit}>
-                Submit
+              <Button onClick={handleBuyerSubmit}>
+                {isLoading ? "submiting..." :"Submit"}
               </Button>
               <Button onClick={handleBuyerClose}>Cancel</Button>
             </DialogActions>

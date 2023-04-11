@@ -5,9 +5,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import logo from "../images/devlogo.png"
 import Update from 'src/components/Update.jsx';
+import CreateGig from "./CreateGig";
+
+
 const Navbar = () => {
   const [showUpdateProfile, setShowUpdateProfile] = useState(false);
   const [open, setOpen] = useState(false);
+  const [showCreateGig, setCreateGig] = useState(false);
+  const [openCreateGig, setOpenCreateGig] = useState(false);
 
   const handleUpdateProfileClick = () => {
     setShowUpdateProfile(true);
@@ -18,10 +23,18 @@ const Navbar = () => {
     setOpen(false)
   }
   
-  const handleUpdateProfileClose = () => {
-    setShowUpdateProfile(false);
-    document.body.style.overflow = 'visible';
-  };
+  const handleCreateGig = () =>{
+    setCreateGig(true);
+    setOpenCreateGig(true);
+  }
+
+  const handleCloseCreateGig = () =>{
+    setCreateGig(false);
+    setOpenCreateGig(false);
+  }
+
+
+
 
   return (
     <div>
@@ -42,11 +55,15 @@ const Navbar = () => {
         </Link>
 
         <Link href='/Search' className="hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px] cursor-pointer">
-          find jobs
+          Hire
         </Link>
 
         <div onClick={handleUpdateProfileClick} className=" cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px]" >
-          update profile
+         Create Profile
+        </div>
+
+        <div onClick={handleCreateGig} className=" cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px]" >
+         Create Gig
         </div>
               </div> 
       
@@ -59,6 +76,7 @@ const Navbar = () => {
       </div>
 
       {showUpdateProfile && (<Update dialog={handleUpdateProfileClick} dialogClose={handleClose}/>)}
+      {showCreateGig && (<CreateGig dialog = {handleCreateGig} dialogClose={handleCloseCreateGig}/>)}
 
     </div>
   );
