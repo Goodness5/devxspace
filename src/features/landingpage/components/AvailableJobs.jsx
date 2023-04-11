@@ -22,7 +22,7 @@ const AvailableJobs = (prop) => {
   };
 
   return (
-    <div className="mt-10 mb-10 w-[23%] rounded-lg pb-[20px] bg-[#EFF2F9]">
+    <div className=" w-[23%] rounded-lg pb-[20px] bg-[#EFF2F9]">
     
       <div className="w-full">
     
