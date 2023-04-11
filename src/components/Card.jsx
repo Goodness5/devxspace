@@ -44,7 +44,7 @@ const Card = (prop) => {
 
     return (
 
-    <div className='mt-10 mx-10 mb-10 lg:ml-32 lg:w-[30%] xl:w-[20%] md:w-[30%] shadow-xl shadow-cyan-400/50 rounded-lg pb-10 bg-white'>
+    <div className='mt-10  mb-10 lg:mx-8 lg:w-[30%] xl:w-[20%] md:w-[30%] shadow-xl shadow-cyan-400/50 rounded-lg pb-10 bg-white'>
         <img src={prop.imgSrc} className='w-full h-3/5 rounded-t-lg'/>
                 <div className='flex justify-between w-full'>
                         <div className='flex w-full'>
