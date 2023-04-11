@@ -28,23 +28,9 @@ const Card = (prop) => {
         setOpen(false);
       };
 
-    const handleTitleChange =(event) =>{
-        setTitle(event.target.value);
-    }
-    const handleDetailsChange = (event) =>{
-        setJobDetails(event.target.value);
-    }
-    const handleSubmit = (event) =>{
-        console.log(
-            title,
-            jobDetails
-        );
-        setOpen(false)
-    }
-
     return (
 
-    <div className='mt-10 mx-10 mb-10 lg:ml-32 lg:w-[30%] xl:w-[20%] md:w-[30%] shadow-xl shadow-cyan-400/50 rounded-lg pb-10 bg-white'>
+    <div className='mt-10 mx-10 mb-10 lg:ml-20 lg:w-[25%]  md:w-[30%] shadow-xl shadow-cyan-500/50 rounded-lg pb-10 bg-white'>
         <img src={prop.imgSrc} className='w-full h-3/5 rounded-t-lg'/>
                 <div className='flex justify-between w-full'>
                         <div className='flex w-full'>
@@ -66,7 +52,8 @@ const Card = (prop) => {
             <h2 className='text-fair-blue text-2xl font-bold px-4'>{prop.skill}</h2>
             <div className='flex justify-between'>
             <h2 className='text-red font-bold text-2xl pl-4 pt-1'>From {prop.price}</h2>
-            <button className="px-7 py-2 border border-blue-300 rounded-lg mr-4 bg-[#052C5B] text-white" onClick={handleClickOpen} >HIRE</button>
+
+            <button className="px-7 py-2 border border-blue-300 rounded-lg mr-4 bg-regal-blue text-white" onClick={handleClickOpen} >HIRE</button>
             </div>
         </div>
     
@@ -77,23 +64,20 @@ const Card = (prop) => {
         <DialogContentText>
             Specify the nature of the task, be as detailed as possible. Payment won't be made until offer is accepted
           </DialogContentText>
-          <TextField autoFocus margin="dense" id="name" label="Title" type="text"  value ={title} fullWidth variant="standard" onChange={handleTitleChange}/>
-          <TextField autoFocus margin="dense" id="name" label="Details" type="text" value={jobDetails} fullWidth variant="standard" onChange={handleDetailsChange}/>
+          <TextField autoFocus margin="dense" id="name" label="Title" type="text" fullWidth variant="standard"/>
+          <TextField autoFocus margin="dense" id="name" label="Details" type="text" fullWidth variant="standard"/>
         </DialogContent>
         <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSubmit} type='submit'>Proceed</Button>
-        </DialogActions> 
+          <Button onClick={handleClose}>Proceed</Button>
+        </DialogActions>
       </Dialog>
     </div>
     </div>
+
 
 
   )
 }
 
 export default Card
-
-//image
-// avatar | Admin User | 0 order in Queue | loveEmo and Save
-//stars 
