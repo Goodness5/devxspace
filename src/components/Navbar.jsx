@@ -4,14 +4,20 @@ import Link from 'next/link';
 import UpdateProfileCard from '../features/profile/component/updateprofile';
 import Image from 'next/image';
 import logo from "../images/devlogo.png"
+import Update from 'src/components/Update.jsx';
 const Navbar = () => {
   const [showUpdateProfile, setShowUpdateProfile] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleUpdateProfileClick = () => {
     setShowUpdateProfile(true);
-    document.body.style.overflow = 'hidden';
+    setOpen(true)
   };
-
+  const handleClose = () =>{
+    setShowUpdateProfile(false);
+    setOpen(false)
+  }
+  
   const handleUpdateProfileClose = () => {
     setShowUpdateProfile(false);
     document.body.style.overflow = 'visible';
@@ -52,19 +58,7 @@ const Navbar = () => {
 
       </div>
 
-      {showUpdateProfile && (
-        <div className="fixed flex flex-col z-50 bg-opacity-50 w-full">
-          <div className="flex justify-end">
-            <div className="cursor-pointer p-4 text-white font-bold" style={{'right': 0}} onClick={handleUpdateProfileClose}>X</div>
-          </div>
-          <div className="my-60 mx-80 w-2/4 p-4 rounded-lg bg-white shadow-md">
-            <UpdateProfileCard />
-            <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block">
-              Update Profile
-            </button>
-          </div>
-        </div>
-      )}
+      {showUpdateProfile && (<Update dialog={handleUpdateProfileClick} dialogClose={handleClose}/>)}
 
     </div>
   );
