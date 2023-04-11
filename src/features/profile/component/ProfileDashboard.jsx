@@ -31,12 +31,12 @@ const ProfileDashboard = () => {
         <section className="w-[80%] mt-5">
           <div className="w-[100%] bg-[#052C5B] h-14 rounded-lg flex items-center">
             <h2 className="text-[14px] font-medium text-[#FFFFFF] pl-6  leading-4 ">
-              Profile
+              Dashboard
             </h2>
           </div>
           <div className=" flex justify-between mt-5">
             <div className="w-[30%] h-[100px] flex gap-2 items-center bg-[white] rounded-lg pl-6">
-              <div className="w-[40px] h-[40px] rounded-full flex items-center border-[1px] justify-center bg-[#1BAF65] ">
+              <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-[#1BAF65] ">
                 <FiCheckCircle size={20} className="text-[#EAD5FF]" />
               </div>
               <div className="">
@@ -45,7 +45,7 @@ const ProfileDashboard = () => {
               </div>
             </div>
             <div className="w-[30%] h-[100px] flex gap-2 items-center bg-[white] rounded-lg pl-6">
-              <div className="w-[40px] h-[40px] rounded-full flex items-center border-[1px] justify-center bg-[#D11357] ">
+              <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-[#D11357] ">
                 <FiAlertCircle size={20} className="text-[#EAD5FF]" />
               </div>
               <div className="">
@@ -54,7 +54,7 @@ const ProfileDashboard = () => {
               </div>
             </div>
             <div className="w-[30%] h-[100px] flex gap-2 items-center bg-[white] rounded-lg pl-6">
-              <div className="w-[40px] h-[40px] rounded-full flex items-center border-[1px] justify-center bg-[#052C5B]">
+              <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-[#052C5B]">
                 <FiMap size={20} className="text-[#EAD5FF]" />
               </div>
               <div className="">
@@ -65,7 +65,7 @@ const ProfileDashboard = () => {
           </div>
           <div className=" flex justify-between mt-5">
             <div className="w-[30%] h-[100px] flex gap-2 items-center bg-[white] rounded-lg pl-6">
-              <div className="w-[40px] h-[40px] rounded-full flex items-center border-[1px] justify-center bg-[#CFECFE] ">
+              <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-[#CFECFE] ">
                 <FaBriefcase size={20} className="text-[#EAD5FF]" />
               </div>
               <div className="">
@@ -74,7 +74,7 @@ const ProfileDashboard = () => {
               </div>
             </div>
             <div className="w-[30%] h-[100px] flex gap-2 items-center bg-[white] rounded-lg pl-6">
-              <div className="w-[40px] h-[40px] rounded-full flex items-center border-[1px] justify-center bg-[#F39F00] ">
+              <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-[#F39F00] ">
                 <FaRegCreditCard size={20} className="text-[#EAD5FF]" />
               </div>
               <div className="">
@@ -83,7 +83,7 @@ const ProfileDashboard = () => {
               </div>
             </div>
             <div className="w-[30%] h-[100px] flex gap-2 items-center bg-[white] rounded-lg pl-6">
-              <div className="w-[40px] h-[40px] rounded-full flex items-center border-[1px] justify-center bg-[#F9E7EB]">
+              <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-[#F9E7EB]">
                 <FaLock size={20} className="text-[#EAD5FF]" />
               </div>
               <div className="">
