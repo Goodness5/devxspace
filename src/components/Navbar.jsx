@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Connect from "./Connect";
 import Link from 'next/link';
 import UpdateProfileCard from '../features/profile/component/updateprofile';
-
+import Image from 'next/image';
+import logo from "../images/devlogo.png"
 const Navbar = () => {
   const [showUpdateProfile, setShowUpdateProfile] = useState(false);
 
@@ -18,28 +19,34 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className='bg-blue-50 flex flex-row justify-end'>
-        <div className=' ml-40 flex'>  
-                
-          <Link href='/' className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
+      <div className='bg-blue-50 flex flex-row justify-between w-[96%]  mx-auto'>
+        
+          <Link href="/" className="">
+            <Image src={logo} className='w-[250px] h-[100px] object-cover'/>
+            </Link>      
+
+            <div className="flex items-center gap-6 text-[16px] font-medium capitalize">
+          <Link href='/' className="flex items-center cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px] ">
+
           Home
         </Link>
 
-        <Link href='/profile' className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
+        <Link href='/profile' className="cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px] ">
           Dashboard
         </Link>
 
-        <Link href='/Search' className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1">
-          <span className="mr-2">find jobs</span>
+        <Link href='/Search' className="hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px] cursor-pointer">
+          find jobs
         </Link>
 
-        <div className="flex items-center shadow-2xl shadow-regal-blue rounded-lg cursor-pointer p-2 mx-1" onClick={handleUpdateProfileClick}>
-          <span className="mr-2">update profile</span>
+        <div onClick={handleUpdateProfileClick} className=" cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px]" >
+          update profile
         </div>
-        </div>
+              </div> 
+      
 
 
-        <div className="ml-auto mr-10 flex items-center">
+        <div className=" mr-10 flex items-center">
           <Connect />
         </div>
 
