@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Connect from "./Connect";
 import Link from 'next/link';
 import UpdateProfileCard from '../features/profile/component/updateprofile';

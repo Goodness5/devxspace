@@ -11,6 +11,8 @@ const Card = (prop) => {
     const [isActive, setIsActive] = useState(false);
     const [dialogState, setDialog] = useState(false);
     const [open, setOpen] = useState(false);
+    const [title, setTitle] = useState('');
+    const [jobDetails, setJobDetails] = useState('')
     
     const handleClick = () => {
         setIsActive(!isActive);
@@ -50,6 +52,7 @@ const Card = (prop) => {
             <h2 className='text-fair-blue text-2xl font-bold px-4'>{prop.skill}</h2>
             <div className='flex justify-between'>
             <h2 className='text-red font-bold text-2xl pl-4 pt-1'>From {prop.price}</h2>
+
             <button className="px-7 py-2 border border-blue-300 rounded-lg mr-4 bg-regal-blue text-white" onClick={handleClickOpen} >HIRE</button>
             </div>
         </div>
@@ -71,6 +74,7 @@ const Card = (prop) => {
       </Dialog>
     </div>
     </div>
+
 
 
   )
