@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Connect from "./Connect";
 import Link from 'next/link';
-import UpdateProfileCard from '../features/profile/component/updateprofile';
+// import UpdateProfileCard from '../features/profile/component/updateprofile';
 import Image from 'next/image';
 import logo from "../images/devlogo.png"
 import Update from 'src/components/Update.jsx';
