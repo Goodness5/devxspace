@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 const Search = () => {
   return (
     <div className='relative' >
-      <div className="bg-regal-blue h-52 ">
+      <div className="bg-[#052c5b] h-42 ">
         <div className="w-2/3 flex flex-col ml-32">
           <h2 className="text-4xl font-bold mt-10 text-white">
             Search Services
@@ -19,7 +19,7 @@ const Search = () => {
       </div>
      
       <div className='relative bg-white'>
-      <div className='my-4 w-[30%] flex justify-end absolute right-20' >
+      <div className='my-4 w-[30%] flex justify-end absolute right-20 top-20' >
     <TextField id="outlined-basic"
           variant="outlined"
           fullWidth
