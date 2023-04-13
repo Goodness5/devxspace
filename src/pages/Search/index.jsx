@@ -40,7 +40,7 @@ const Search = () => {
               imgSrc={"https://iamsuperman.pythonanywhere.com/" + e.image_file}
               avatar={"https://iamsuperman.pythonanywhere.com/" + e?.user?.avatar}
               username={e?.user?.username}
-              order = {e.order}
+              // order = {e.order}
               address={e?.user?.address}
               skill = {e.name}
               description = {e.description}
