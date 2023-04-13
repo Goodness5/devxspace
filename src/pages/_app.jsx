@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BASE_URL } from "../utils/Api"
+import { useEffect } from 'react';
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
@@ -40,6 +41,7 @@ const wagmiClient = createClient({
 function MyApp({ Component, pageProps }) {
   const { data: account } = useAccount();
   const address = account?.address;
+  console.log(address)
 
   useEffect(() => {
     const url = `${BASE_URL}/login`
