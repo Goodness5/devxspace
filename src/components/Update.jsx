@@ -1,4 +1,6 @@
+
 import React, { useEffect, useState } from "react";
+
 // import UpdateProfileCard from '../features/profile/component/updateprofile';
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -27,6 +29,8 @@ const Update = (props) => {
   // const handleClickOpen = () => {
   //   setOpen(true);
   // };
+
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -103,6 +107,7 @@ mutate(people)
     }
   },[isError, isSuccess, error])
 
+
   return (
     <div>
         <Dialog
@@ -148,6 +153,7 @@ mutate(people)
               fullWidth
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
+
               className="my-3"
             />
             <TextField
@@ -159,6 +165,7 @@ mutate(people)
               rows={4}
               value={about}
               onChange={(e) =>setAbout(e.target.value) }
+
               className="my-3"
             />
             <FormControl fullWidth margin="dense">
@@ -168,6 +175,7 @@ mutate(people)
               type="text"
               value={skills}
               onChange={(e) =>setSkills(e.target.value)}
+
               className="my-3"
             />
             </FormControl>
@@ -176,13 +184,16 @@ mutate(people)
             <TextField
               type="file"
               variant="outlined"
+
               onChange={(e)=>setFiles(e.target.files)}
+
             />
             </FormControl>
 
             <DialogActions className="h-4/6">
               <Button type="submit" onClick={handleFreeLanceSubmit}>
                {isLoading ? "submiting..." : "Submit"}
+
               </Button>
               <Button onClick={handleFreelanceClose}>Cancel</Button>
             </DialogActions>
@@ -201,7 +212,9 @@ mutate(people)
               type="text"
               fullWidth
               value={userName}
+
               onChange={()=>setUserName(e.target.value)}
+
               className="my-3"
             />
             <TextField
@@ -213,18 +226,21 @@ mutate(people)
               rows={4}
               value={about}
               onChange={()=>setAbout(e.target.value)}
+
               className="my-3"
             />
              <FormControl fullWidth margin="dense">
             <TextField
               type="file"
               variant="outlined"
+
               onChange={(e)=>setFiles(e.target.files)}
             />
             </FormControl>
             <DialogActions className="h-4/6">
               <Button onClick={handleBuyerSubmit}>
                 {isLoading ? "submiting..." :"Submit"}
+
               </Button>
               <Button onClick={handleBuyerClose}>Cancel</Button>
             </DialogActions>
