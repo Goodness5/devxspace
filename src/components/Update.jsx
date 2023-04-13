@@ -55,6 +55,7 @@ const Update = (props) => {
     setBuyerFormOpen(false);
   };
 
+
   const {mutate, isLoading, isError, isSuccess, error} = useCreateProfile()
   const handleFreeLanceSubmit = (e) => {
     e.preventDefault();
@@ -72,6 +73,7 @@ const Update = (props) => {
       skills,
       about:about
     }
+    // console.log(files[0];
 
     mutate(people)
    
@@ -98,7 +100,8 @@ mutate(people)
   };
   useEffect(()=>{
     if(isError){
-      toast.error(error.response.message)
+      toast.error(error.response?.data?.error)
+      console.log(error.response?.data?.error);
     }
     if(isSuccess){
       toast.success("Profile Created")
