@@ -5,15 +5,23 @@ import avatar from "../../../images/avatar.png";
 import { FiMap, FiAlertCircle, FiCheckCircle } from "react-icons/fi";
 import { FaRegCreditCard, FaLock, FaBriefcase } from "react-icons/fa";
 import Task from "./Task";
+import { useAccount } from "wagmi";
+import useFetchProfile from "../hooks/useFetchProfile";
 
 const ProfileDashboard = () => {
+
+  const {address} = useAccount();
+
+  const {data, isLoading, isError, error, refetch} = useFetchProfile(address);
+
+  console.log("detail",data);
   return (
     <main className="w-[100%]  pb-10  bg-[#EFF2F9]">
       <div className="flex w-[90%] mx-auto">
         <section className="w-[20%] mt-[-40px] relative">
           <div className="px-[25px] border-[1px] border-[white] w-[250px] bg-[white] h-[300px] py-[25px] rounded-lg">
             <Image
-              src={avatar}
+              src={data?.avatar ?? avatar}
               alt="freelance picture"
               height={200}
               width={200}
@@ -21,7 +29,7 @@ const ProfileDashboard = () => {
             />
 
             <h3 className=" mt-3 text-center text-[16px] leading-5">
-              Developer Vince
+              {data?.username}
             </h3>
             <p className="text-[12px] text-center mt-1 leading-4">
               Web3 Developer
@@ -103,9 +111,7 @@ const ProfileDashboard = () => {
               </h3>
               <div className="w-[96%] bg-[#F1F4F9] mx-auto h-[200px] overflow-y-scroll mt-4 rounded-lg">
                 <p className="text-[14px] leading-4 font-normal  w-[96%] mx-auto pt-4">
-                  At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                  blanditiis praesentium voluptatum deleniti atque corrupti quos
-                  dolores et quas molestias excepturi
+                  {data?.about}
                 </p>
               </div>
             </div>
@@ -114,15 +120,13 @@ const ProfileDashboard = () => {
                 Skills
               </h3>
               <div className="w-[96%]  mx-auto  mt-4 flex gap-2">
+                {data?.skills?.map((data)=>(
+
                 <p className="px-4 py-2 rounded-lg bg-[#F1F4F9] text-[14px] font-medium">
-                  Html
+                  {data}
                 </p>
-                <p className="px-4 py-2 rounded-lg bg-[#F1F4F9] text-[14px] font-medium">
-                  css
-                </p>
-                <p className="px-4 py-2 rounded-lg bg-[#F1F4F9] text-[14px] font-medium">
-                  Solidity
-                </p>
+                ))}
+               
               </div>
             </div>
           </div>
