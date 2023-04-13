@@ -1,10 +1,15 @@
 import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import { configureChains, createClient, WagmiConfig } from 'wagmi';
+import { configureChains, createClient, useAccount, WagmiConfig } from 'wagmi';
 import { arbitrum, goerli, mainnet, optimism, polygon, sepolia } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import '../../styles/globals.css';
-import Pagelayout from '../pagelayout/pagelayout';
+import Pagelayout from '../pagelayout/Pagelayout';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { useEffect } from 'react';
+import { BASE_URL } from '../utils/Api';
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
@@ -32,10 +37,12 @@ const wagmiClient = createClient({
 
 
 
-const client = new QueryClient();
+
 function MyApp({ Component, pageProps }) {
-  const { data: account } = useAccount();
-  const address = account?.address;
+  
+  const client = new QueryClient();
+  const { address } = useAccount();
+// const address = account?.address;
 
   useEffect(() => {
     if (address) {
@@ -57,7 +64,6 @@ function MyApp({ Component, pageProps }) {
         });
     }
   }, [address]);
-
   return (
     <WagmiConfig client={wagmiClient}>
        <ToastContainer />
