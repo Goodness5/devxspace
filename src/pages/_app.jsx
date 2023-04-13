@@ -45,9 +45,10 @@ function MyApp({ Component, pageProps }) {
 // const address = account?.address;
 
   useEffect(() => {
+    const url = `${BASE_URL}/login`
     if (address) {
       // Send the address to the login route
-      fetch('/api/login', {
+      fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ address }),
