@@ -4,8 +4,12 @@ import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { arbitrum, goerli, mainnet, optimism, polygon, sepolia } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import '../../styles/globals.css';
-import Pagelayout from '../pagelayout/pagelayout';
 import { useAccount } from "wagmi";
+import Pagelayout from '../pagelayout/Pagelayout';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { BASE_URL } from "../utils/Api"
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
@@ -38,9 +42,10 @@ function MyApp({ Component, pageProps }) {
   const address = account?.address;
 
   useEffect(() => {
+    const url = `${BASE_URL}/login`
     if (address) {
       // Send the address to the login route
-      fetch('/api/login', {
+      fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ address }),
@@ -60,11 +65,15 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <WagmiConfig client={wagmiClient}>
+       <ToastContainer />
+       <QueryClientProvider client={client}>
+
       <RainbowKitProvider chains={chains}>
       <Pagelayout>
         <Component {...pageProps} />
       </Pagelayout>
       </RainbowKitProvider>
+       </QueryClientProvider>
     </WagmiConfig>
   );
 }
