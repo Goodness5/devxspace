@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useEffect, useState} from 'react'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -6,15 +6,43 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useAccount } from 'wagmi';
+import useHireDev from '../features/services/hooks/useHireDev';
+import { toast } from 'react-toastify';
 
 const Card = (prop) => {
+  const {address} =useAccount()
     const [isActive, setIsActive] = useState(false);
     const [open, setOpen] = useState(false);
     const [title, setTitle] = useState('');
+    const [price, setPrice] = useState('')
     const [jobDetails, setJobDetails] = useState('')
+    const [deadline, setDeadline] = useState(0)
+
+    const {mutate, isLoading, isError, error, isSuccess} = useHireDev()
     
-    const handleClick = () => {
-        setIsActive(!isActive);
+    const handleClick = (e) => {
+    
+      e.preventDefault();
+      if(!address){
+        toast.error("Connect your wallet")
+      }
+      if(title === "" || price === "" || jobDetails ==="" || deadline === ""){
+        toast.error("All fields required")
+      }
+
+      const hireMe ={
+        buyer_address:address,
+title,
+description:jobDetails,
+time_frame:deadline,
+price,
+developer_address:prop.address,
+      }
+      mutate(hireMe);
+
+
+       
       }
      
 
@@ -25,6 +53,15 @@ const Card = (prop) => {
         setOpen(false);
       };
 
+      useEffect(()=>{
+        if(isError){
+          toast.error(error?.response?.data?.error)
+        }
+        if(isSuccess){
+          toast.success("Developer Hired")
+          setIsActive(!isActive);
+        }
+      },[isError, error])
     return (
 
     <div className='mt-10  mb-10 lg:mx-8 lg:w-[30%] xl:w-[20%] md:w-[30%] shadow-xl shadow-cyan-400/50 rounded-lg pb-10 bg-white'>
@@ -63,14 +100,14 @@ const Card = (prop) => {
         <DialogContentText>
             Specify the nature of the task, be as detailed as possible. Payment won't be made until offer is accepted
           </DialogContentText>
-          <TextField autoFocus margin="dense" id="name" label="Title" type="text" fullWidth variant="standard"/>
-          <TextField autoFocus margin="dense" id="name" label="Description" type="text" fullWidth variant="standard"/>
-          <TextField autoFocus margin="dense" id="name" label="Price" type="text" fullWidth variant="standard"/>
-          <TextField autoFocus margin="dense" id="name" label="Deadline" type="text" fullWidth variant="standard"/>
+          <TextField autoFocus margin="dense" id="name" label="Title" type="text" fullWidth variant="standard" value={title} onChange={(e) =>setTitle(e.target.value)}/>
+          <TextField autoFocus margin="dense" id="name" label="Description" type="text" fullWidth variant="standard" value={jobDetails} onChange={(e) =>setJobDetails(e.target.value)}/>
+          <TextField autoFocus margin="dense" id="name" label="Price" type="text" fullWidth variant="standard" value={price} onChange={(e) =>setPrice(e.target.value)}/>
+          <TextField autoFocus margin="dense" id="name" label="Deadline" type="number" fullWidth variant="standard" value={deadline} onChange={(e) =>setDeadline(e.target.value)}/>
         </DialogContent>
         <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Proceed</Button>
+          <Button onClick={handleClick}>{isLoading ? "proceeding" : "Proceed"}</Button>
         </DialogActions>
       </Dialog>
     </div>

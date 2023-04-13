@@ -15,15 +15,16 @@ const ProfileDashboard = () => {
 
   const {data, isLoading, isError, error, refetch} = useFetchProfile(address);
 
-  console.log("detail",data);
-  const image = ` https://iamsuperman.pythonanywhere.com/${data?.avatar}`;
+  console.log("llll", "https://iamsuperman.pythonanywhere.com/" + data?.avatar);
+  // const image = ``;
+
   return (
     <main className="w-[100%]  pb-10  bg-[#EFF2F9]">
       <div className="flex w-[90%] mx-auto">
         <section className="w-[20%] mt-[-40px] relative">
           <div className="px-[25px] border-[1px] border-[white] w-[250px] bg-[white] h-[300px] py-[25px] rounded-lg">
             <Image
-              src={image ?? avatar}
+              src={ "https://iamsuperman.pythonanywhere.com/" + data?.avatar}
               alt="freelance picture"
               height={200}
               width={200}

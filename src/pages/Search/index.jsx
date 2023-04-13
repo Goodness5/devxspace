@@ -32,6 +32,7 @@ const Search = () => {
       </div>
       <div className='lg:flex flex-wrap w-[100%] flex justify-center content-center float-left bg-[#EFF2F9] mt-20' >
         {data?.map((e) => {
+         
           
           return (
             <Card
@@ -40,6 +41,7 @@ const Search = () => {
               avatar={"https://iamsuperman.pythonanywhere.com/" + e?.user?.avatar}
               username={e?.user?.username}
               // order = {e.order}
+              address={e?.user?.address}
               skill = {e.name}
               description = {e.description}
               // price = {e.price}

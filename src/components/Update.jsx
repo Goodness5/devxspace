@@ -101,7 +101,7 @@ mutate(people)
   useEffect(()=>{
     if(isError){
       toast.error(error.response?.data?.error)
-      console.log(error.response?.data?.error);
+      // console.log(error.response?.data?.error);
     }
     if(isSuccess){
       toast.success("Profile Created")
@@ -216,7 +216,7 @@ mutate(people)
               fullWidth
               value={userName}
 
-              onChange={()=>setUserName(e.target.value)}
+              onChange={(e)=>setUserName(e.target.value)}
 
               className="my-3"
             />
@@ -228,7 +228,7 @@ mutate(people)
               multiline
               rows={4}
               value={about}
-              onChange={()=>setAbout(e.target.value)}
+              onChange={(e)=>setAbout(e.target.value)}
 
               className="my-3"
             />
