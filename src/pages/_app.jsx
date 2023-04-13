@@ -4,7 +4,7 @@ import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { arbitrum, goerli, mainnet, optimism, polygon, sepolia } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import '../../styles/globals.css';
-import Pagelayout from '../pagelayout/pagelayout';
+import Pagelayout from '../pagelayout/Pagelayout';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { QueryClient, QueryClientProvider } from 'react-query';

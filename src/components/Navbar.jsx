@@ -22,10 +22,15 @@ const Navbar = () => {
     setOpen(false)
   }
   
-  // const handleUpdateProfileClose = () => {
-  //   setShowUpdateProfile(false);
-  //   document.body.style.overflow = 'visible';
-  // };
+  const handleCreateGig = () =>{
+    setCreateGig(true);
+    setOpenCreateGig(true);
+  }
+
+  const handleCloseCreateGig = () =>{
+    setCreateGig(false);
+    setOpenCreateGig(false);
+  }
 
   return (
     <div>
@@ -67,7 +72,7 @@ const Navbar = () => {
       </div>
 
       {showUpdateProfile && (<Update dialog={handleUpdateProfileClick} dialogClose={handleClose}/>)}
-      
+
       {showCreateGig && (<CreateGig dialog = {handleCreateGig} dialogClose={handleCloseCreateGig}/>)}
 
     </div>
