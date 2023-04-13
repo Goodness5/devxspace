@@ -4,10 +4,8 @@ import Link from 'next/link';
 // import UpdateProfileCard from '../features/profile/component/updateprofile';
 import Image from 'next/image';
 import logo from "../images/devlogo.png"
-import Update from 'src/components/Update.jsx';
-import CreateGig from "./CreateGig";
-
-
+import Update from "./Update";
+// import Update from 'src/components/Update.jsx';
 const Navbar = () => {
   const [showUpdateProfile, setShowUpdateProfile] = useState(false);
   const [open, setOpen] = useState(false);
@@ -23,18 +21,10 @@ const Navbar = () => {
     setOpen(false)
   }
   
-  const handleCreateGig = () =>{
-    setCreateGig(true);
-    setOpenCreateGig(true);
-  }
-
-  const handleCloseCreateGig = () =>{
-    setCreateGig(false);
-    setOpenCreateGig(false);
-  }
-
-
-
+  // const handleUpdateProfileClose = () => {
+  //   setShowUpdateProfile(false);
+  //   document.body.style.overflow = 'visible';
+  // };
 
   return (
     <div>
