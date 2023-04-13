@@ -7,7 +7,7 @@ const useCreateProfile = () => {
   const url = `${BASE_URL}/create_profile`
   const config = {
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
       // 'Access-Control-Allow-Origin': '*'
     
     },

@@ -4,9 +4,12 @@ import Card from "../../components/Card";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
+import useFetchServices from "../../features/services/hooks/useFetchServices";
 
 
 const Search = () => {
+  const {data, isLoadins, isError, error} = useFetchServices()
+  console.log("heee", data);
   return (
     <div className='relative' >
       <div className="bg-[#052c5b] h-42 ">
@@ -28,16 +31,18 @@ const Search = () => {
       </div>
       </div>
       <div className='lg:flex flex-wrap w-[100%] flex justify-center content-center float-left bg-[#EFF2F9] mt-20' >
-        {userDetails.map((e) => {
+        {data?.map((e) => {
+          
           return (
             <Card
               key={e.id}
-              imgSrc={e.image}
-              avatar={e.avatar}
-              username={e.username}
-              order = {e.order}
-              skill = {e.skill}
-              price = {e.price}
+              imgSrc={"https://iamsuperman.pythonanywhere.com/" + e.image_file}
+              avatar={"https://iamsuperman.pythonanywhere.com/" + e?.user?.avatar}
+              username={e?.user?.username}
+              // order = {e.order}
+              skill = {e.name}
+              description = {e.description}
+              // price = {e.price}
             />
           );
         })}

@@ -4,7 +4,7 @@ import { configureChains, createClient, useAccount, WagmiConfig } from 'wagmi';
 import { arbitrum, goerli, mainnet, optimism, polygon, sepolia } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import '../../styles/globals.css';
-import { useAccount } from "wagmi";
+
 import Pagelayout from '../pagelayout/Pagelayout';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -49,27 +49,27 @@ function MyApp({ Component, pageProps }) {
   console.log(address)
 
 
-  useEffect(() => {
-    const url = `${BASE_URL}/login`
-    if (address) {
-      // Send the address to the login route
-      fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ address }),
-      })
-        .then((response) => {
-          if (response.ok) {
-            console.log('Successfully logged in');
-          } else {
-            console.log('Failed to log in');
-          }
-        })
-        .catch((error) => {
-          console.error('Failed to log in:', error);
-        });
-    }
-  }, [address]);
+  // useEffect(() => {
+  //   const url = `${BASE_URL}/login`
+  //   if (address) {
+  //     // Send the address to the login route
+  //     fetch(url, {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({ address }),
+  //     })
+  //       .then((response) => {
+  //         if (response.ok) {
+  //           console.log('Successfully logged in');
+  //         } else {
+  //           console.log('Failed to log in');
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error('Failed to log in:', error);
+  //       });
+  //   }
+  // }, [address]);
 
 return (
     <WagmiConfig client={wagmiClient}>
