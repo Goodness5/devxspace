@@ -15,7 +15,7 @@ const ProfileDashboard = () => {
 
   const {data, isLoading, isError, error, refetch} = useFetchProfile(address);
 
-  console.log("detail",data);
+  console.log("llll", "https://iamsuperman.pythonanywhere.com/" + data?.avatar);
   // const image = ``;
 
   return (
