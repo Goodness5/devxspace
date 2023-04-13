@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { BASE_URL } from '../utils/Api';
 
 
+
 const { chains, provider, webSocketProvider } = configureChains(
   [
     mainnet,
@@ -44,7 +45,8 @@ function MyApp({ Component, pageProps }) {
   
   const client = new QueryClient();
   const { address } = useAccount();
-// const address = account?.address;
+  // const address = account?.address;
+  console.log(address)
 
 
   useEffect(() => {
