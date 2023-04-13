@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Connect from "./Connect";
 import Link from 'next/link';
-// import UpdateProfileCard from '../features/profile/component/updateprofile';
+
 import Image from 'next/image';
 import logo from "../images/devlogo.png"
 import Update from "./Update";
-// import Update from 'src/components/Update.jsx';
+import CreateGig from "./CreateGig";
+
 const Navbar = () => {
   const [showUpdateProfile, setShowUpdateProfile] = useState(false);
   const [open, setOpen] = useState(false);
@@ -66,6 +67,7 @@ const Navbar = () => {
       </div>
 
       {showUpdateProfile && (<Update dialog={handleUpdateProfileClick} dialogClose={handleClose}/>)}
+      
       {showCreateGig && (<CreateGig dialog = {handleCreateGig} dialogClose={handleCloseCreateGig}/>)}
 
     </div>
