@@ -48,8 +48,9 @@ const Card = (prop) => {
         <div className='w-full'>
             <div></div>
             <h2 className='text-fair-blue text-2xl font-bold px-4'>{prop.skill}</h2>
-            <div className='flex justify-between'>
-            <h2 className='text-red font-bold text-2xl pl-4 pt-1'>From {prop.price}</h2>
+            <p className='text-fair-blue text-2xl font-bold px-4'>{prop.description}</p>
+            <div className='flex justify-end'>
+            {/* <h2 className='text-red font-bold text-2xl pl-4 pt-1'>From {prop.price}</h2> */}
 
             <button className="px-7 py-2 border border-blue-300 rounded-lg mr-4 bg-regal-blue text-white" onClick={handleClickOpen} >HIRE</button>
             </div>
@@ -63,7 +64,9 @@ const Card = (prop) => {
             Specify the nature of the task, be as detailed as possible. Payment won't be made until offer is accepted
           </DialogContentText>
           <TextField autoFocus margin="dense" id="name" label="Title" type="text" fullWidth variant="standard"/>
-          <TextField autoFocus margin="dense" id="name" label="Details" type="text" fullWidth variant="standard"/>
+          <TextField autoFocus margin="dense" id="name" label="Description" type="text" fullWidth variant="standard"/>
+          <TextField autoFocus margin="dense" id="name" label="Price" type="text" fullWidth variant="standard"/>
+          <TextField autoFocus margin="dense" id="name" label="Deadline" type="text" fullWidth variant="standard"/>
         </DialogContent>
         <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
