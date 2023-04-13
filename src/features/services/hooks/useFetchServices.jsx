@@ -1,10 +1,11 @@
-import { useQuery } from "react-query"
-import { BASE_URL } from "../../../utils/Api"
 import axios from "axios";
 
+import { useQuery } from "react-query";
+import { BASE_URL } from "../../../utils/Api";
 
-const useFetchProfile = (address) => {
-    const API = `${BASE_URL}/users/${address}`
+const useFetchServices = () => {
+    const API = `${BASE_URL}/list_services`
+    console.log("api", API);
 
     const config ={
         headers:{
@@ -12,16 +13,15 @@ const useFetchProfile = (address) => {
         }
     }
 
-    const getProfile =()=>{
+    const getTask =()=>{
         return axios.get(API, config).then((res)=>res.data)
     }
     const { data, isLoading, isError, error, refetch } = useQuery(
-        ["profile"],
-        getProfile,
+        ["tasks"],
+        getTask,
         {}
       );
       return{data, isLoading, isError, error, refetch};
- 
 }
 
-export default useFetchProfile
+export default useFetchServices

@@ -7,7 +7,7 @@ const useCreateGig = () => {
     const url = `${BASE_URL}/register_service`
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
         // 'Access-Control-Allow-Origin': '*'
       
       },

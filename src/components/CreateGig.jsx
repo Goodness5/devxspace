@@ -40,7 +40,9 @@ const CreateGig = (props) => {
       address,
 
     }
+  // console.log(file[0]);
     mutate(service)
+
     
   }
   
@@ -94,7 +96,7 @@ if(isSuccess){
             <TextField
               type="file"
               variant="outlined"
-              onChange={(e)=>setFile(e.target.files)}
+              onChange={(e)=>setFile(e.target.files[0])}
             />    
             </FormControl>
 

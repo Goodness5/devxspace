@@ -68,9 +68,9 @@ const Update = (props) => {
     }
     const people={
       username:userName,
-      avatar:files[0],
+      avatar:files,
       address,
-      skills,
+      skills:skills,
       about:about
     }
     // console.log(files[0];
@@ -91,7 +91,7 @@ const Update = (props) => {
     }
     const people={
       username:userName,
-      avatar:files[0],
+      avatar:files,
       address,
       about:about
     }
@@ -188,7 +188,7 @@ mutate(people)
               type="file"
               variant="outlined"
 
-              onChange={(e)=>setFiles(e.target.files)}
+              onChange={(e)=>setFiles(e.target.files[0])}
 
             />
             </FormControl>
@@ -237,7 +237,7 @@ mutate(people)
               type="file"
               variant="outlined"
 
-              onChange={(e)=>setFiles(e.target.files)}
+              onChange={(e)=>setFiles(e.target.files[0])}
             />
             </FormControl>
             <DialogActions className="h-4/6">
