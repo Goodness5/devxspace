@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useEffect, useState} from 'react'
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -8,30 +8,53 @@ import DialogContent from "@mui/material/DialogContent";
 
 import DialogTitle from "@mui/material/DialogTitle";
 import FormControl from "@mui/material/FormControl";
+import { useAccount } from 'wagmi';
+import useCreateGig from '../features/profile/hooks/useCreateGig';
+import { toast } from 'react-toastify';
 
 const CreateGig = (props) => {
-  const [description, setDescription] = useState();
-  const [price, setPrice] = useState();
-  const [title, setTitle] = useState();
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [title, setTitle] = useState("");
+  const [file, setFile] = useState([]);
 
-  const handleDescriptionChange = (e) =>{
-    setDescription(e.target.value);
-  }
-  const handlePriceChange = (e) =>{
-    setPrice(e.target.value)
-  }
-  const handleFileInput = (e) => {
-    console.log(e.target.value);
-  }
-  
-  const handleTitle = (e) =>{
-    setTitle(e.target.value)
-  }
+  const {address} =useAccount();
+
+  const {mutate, isLoading, isError, isSuccess, error} = useCreateGig()
+
+
   const handleGigCreation = (e) =>{
-    console.log(description, price);
-    props.dialogClose(false)
+    e.preventDefault()
+    if(!address){
+      toast.error("Connect your wallet address")
+    }
+    if(description === "" || price === "" || title === "" || file ===[]){
+      toast.error("All fields need to be filled")
+    }
+
+
+    const service ={
+      service_image: file,
+      service_name: title,
+      service_desc:description,
+      address,
+
+    }
+    mutate(service)
+    
   }
   
+  useEffect(()=>{
+if(isError){
+  toast.error(error.response?.data?.error)
+
+
+}
+if(isSuccess){
+  toast.success("Gig successfully created")
+  props.dialogClose(false)
+}
+  },[isError, error, isSuccess])
   
     return (
     <div>
@@ -45,7 +68,7 @@ const CreateGig = (props) => {
               type="text"
               fullWidth
               value={title}
-              onChange={handleTitle}
+              onChange={(e)=>setTitle(e.target.value)}
               className="my-3"
             />   
             <TextField
@@ -56,7 +79,7 @@ const CreateGig = (props) => {
               rows={4}
               multiline
               value={description}
-              onChange={handleDescriptionChange}
+              onChange={(e)=>setDescription(e.target.value)}
               className="my-3"
             />
             <TextField
@@ -65,19 +88,19 @@ const CreateGig = (props) => {
               type="number"
               fullWidth
               value={price}
-              onChange={handlePriceChange}
+              onChange={(e)=>setPrice(e.target.value)}
               className="my-3"
             />    
             <TextField
               type="file"
               variant="outlined"
-              onChange={handleFileInput}
+              onChange={(e)=>setFile(e.target.files)}
             />    
             </FormControl>
 
             <DialogActions className="h-4/6">
               <Button type="submit" onClick={handleGigCreation}>
-                Submit
+                {isLoading ? "submiting..." : "Submit"}
               </Button>
               <Button onClick={props.dialogClose}>Cancel</Button>
             </DialogActions>

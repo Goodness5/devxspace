@@ -18,6 +18,8 @@ const useCreateProfile = () => {
     formData.append("username", data.username)
     formData.append("avatar", data.avatar)
     formData.append("address", data.address)
+    formData.append("skills", data.skills)
+    formData.append("about", data.about)
     return axios.post(url, data, config);
   }
 return useMutation(register)
