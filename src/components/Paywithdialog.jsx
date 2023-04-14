@@ -17,7 +17,6 @@ const Paywithdialog = (props) => {
     const [isActive, setIsActive] = useState(false);
     const [hirePrice, setHirePrice] = useState(0);
     const [recipient, setRecepient] = useState('');
-    const [detail, setDetail] = useState([]);
 
     const { config: depositByETHConfig} = usePrepareContractWrite({
         mode: 'recklesslyUnprepared',
@@ -51,9 +50,9 @@ const Paywithdialog = (props) => {
     const { data:payToken, isLoading : payTokenisLoad, isSuccess:payTKisSucc, write:deposit} = useContractWrite(config)
 
     
-     function handleETHClick(e){   
+      async function handleETHClick(e){   
         e.preventDefault();
-        
+       try {   
             if(!address){
               toast.error("Connect your wallet")
             }else if(props.titleProp === "" || props.priceProp === "" || props.jobDetailsProp ==="" || props.deadlineProp === ""){
@@ -71,12 +70,14 @@ const Paywithdialog = (props) => {
                 setHirePrice(hireMe.price);
                 setRecepient(hireMe.developer_address);
                 
-                setDetail(hireMe)
+            
                     
-                write?.();
-              
-
-     
+                write();
+               
+                payEthisSucc ? mutate(hireMe) : null;
+       } catch (error) {
+            console.log(error);
+       }
     }
 
 
@@ -118,9 +119,6 @@ const Paywithdialog = (props) => {
           toast.success("Developer Hired")
           setIsActive(!isActive);
         }
-        // if(payEthisSucc){
-        //   mutate(detail)
-        // }
       },[isError, error])
     return (
     <div>
