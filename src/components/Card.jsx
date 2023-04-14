@@ -6,45 +6,25 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useAccount } from 'wagmi';
+import Paywithdialog from './Paywithdialog';
 import useHireDev from '../features/services/hooks/useHireDev';
-import { toast } from 'react-toastify';
 
 const Card = (prop) => {
-  const {address} =useAccount()
     const [isActive, setIsActive] = useState(false);
     const [open, setOpen] = useState(false);
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('')
     const [jobDetails, setJobDetails] = useState('')
     const [deadline, setDeadline] = useState(0)
-
+    const [openPay, setPay] = useState(false);
     const {mutate, isLoading, isError, error, isSuccess} = useHireDev()
-    
-    const handleClick = (e) => {
-    
-      e.preventDefault();
-      if(!address){
-        toast.error("Connect your wallet")
-      }
-      if(title === "" || price === "" || jobDetails ==="" || deadline === ""){
-        toast.error("All fields required")
-      }
 
-      const hireMe ={
-        buyer_address:address,
-title,
-description:jobDetails,
-time_frame:deadline,
-price,
-developer_address:prop.address,
+      const handlePay = () =>{
+        setPay(true);
       }
-      mutate(hireMe);
-
-
-       
+      const handlepayClose = () =>{
+        setPay(false);
       }
-     
 
       const handleClickOpen = () => {
         setOpen(true);
@@ -53,15 +33,10 @@ developer_address:prop.address,
         setOpen(false);
       };
 
-      useEffect(()=>{
-        if(isError){
-          toast.error(error?.response?.data?.error)
-        }
-        if(isSuccess){
-          toast.success("Developer Hired")
-          setIsActive(!isActive);
-        }
-      },[isError, error])
+
+      const handleLike = () =>{
+        setIsActive(!isActive);
+      }
     return (
 
     <div className='mt-10  mb-10 lg:mx-8 lg:w-[30%] xl:w-[20%] md:w-[30%] shadow-xl shadow-cyan-400/50 rounded-lg pb-10 bg-white'>
@@ -79,7 +54,7 @@ developer_address:prop.address,
                         </div>
                     <div className='flex pr-3'>
                     <div className={"heart" + (isActive ? " is-active" : "")}
-                    onClick={handleClick}></div>
+                    onClick={handleLike}></div>
                     </div>
                 </div>
         <div className='w-full'>
@@ -107,10 +82,16 @@ developer_address:prop.address,
         </DialogContent>
         <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClick}>{isLoading ? "proceeding" : "Proceed"}</Button>
+          <Button onClick={handlePay}>{isLoading ? "processing" : "Proceed"}</Button>
         </DialogActions>
       </Dialog>
     </div>
+
+     {openPay && <Paywithdialog handlePayWith={handlePay} handlePaywithClose={handlepayClose} 
+        titleProp={title} priceProp={price} jobDetailsProp={jobDetails} deadlineProp={deadline} 
+        address={prop.address}
+     />}
+
     </div>
 
 
