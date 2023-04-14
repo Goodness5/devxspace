@@ -9,6 +9,7 @@ import { useAccount } from "wagmi";
 import useFetchProfile from "../hooks/useFetchProfile";
 import { BASE_URL } from "../../../utils/Api";
 import TaskNotification from "./TaskNotification";
+import BuyerTask from "./BuyerTask";
 
 const ProfileDashboard = () => {
 
@@ -107,6 +108,7 @@ const ProfileDashboard = () => {
           <div className="">
             <TaskNotification/>
             <Task/>
+            <BuyerTask/>
           </div>
 
           <div className="w-[100%] bg-[#FFFFFF] mt-5 rounded-lg">

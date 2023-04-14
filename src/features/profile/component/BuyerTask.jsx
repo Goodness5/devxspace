@@ -1,20 +1,17 @@
-/** @format */
-
-import React from "react";
-import OnGoingTask from "./OnGoingTask";
-import useFetchOngoinTask from "../hooks/useFetchOngoinTask";
+import React from 'react'
 import { useAccount } from "wagmi";
-
-const Task = () => {
+import TaskInProgress from './TaskInProgress';
+import useTaskInProgress from '../hooks/useTaskInProgress';
+const BuyerTask = () => {
     const {address} =useAccount()
-    const {data} = useFetchOngoinTask(address)
-    console.log(data);
+    const {data} = useTaskInProgress(address)
+    console.log("mm", data);
   return (
     <section className="mt-4">
       <section className="flex gap-4">
         <div className="bg-[#FFFFFF] w-[50%] rounded-lg ">
           <h3 className="text-[14px] leading-5  pb-4 pt-4 font-semibold border-b-[1px] border-[#EFF2F9] text-[#1A274E] pl-6">
-            onGoing Task
+             Task in Progress
           </h3>
          { data?.tasks?.length === 0 ? (
             <p className="pt-[40px] pb-[40px] pl-6 text-[16px]">
@@ -24,8 +21,8 @@ const Task = () => {
             <>
 {
     data?.tasks?.map((data)=>(
-
-        <OnGoingTask title={data.title} description={data.description}  id={data.task_id} address={data.developer_address} key={data.task_id}/>
+<TaskInProgress/>
+        // <OnGoingTask title={data.title} description={data.description}  id={data.task_id} address={data.developer_address} key={data.task_id}/>
     ))
 }
             </>
@@ -61,7 +58,7 @@ const Task = () => {
         </div>
       </section>
     </section>
-  );
-};
+  )
+}
 
-export default Task;
+export default BuyerTask

@@ -13,7 +13,7 @@ import token_abi from "../utils/token_abi.json";
 import { ethers } from 'ethers';
 import ClipLoader from "react-spinners/ClipLoader";
 import { connectorsForWallets } from '@rainbow-me/rainbowkit';
-import Web3 from "web3";
+
 
 const Paywithdialog = (props) => {
     const {address} = useAccount('')
