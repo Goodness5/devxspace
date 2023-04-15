@@ -1,7 +1,6 @@
 import React from 'react'
 import SingleTaskNotification from './SingleTaskNotification'
 import { useAccount } from 'wagmi';
-import useTaskNotification from '../hooks/useTaskNotification';
 import PendingTaskNotification from './PendingTaskNotification';
 import useFetchPendingTaskNot from '../hooks/useFetchPendingTaskNot';
 
@@ -23,8 +22,8 @@ const PendingTask = () => {
         ) : (
           <div>
             {data?.tasks?.map((data) => (
-                <PendingTaskNotification title={data.title} description={data.description} deadline={data.deadline} price={data.price} id={data.id} key={data.id} address={data.developer_address}/>
-            //   <SingleTaskNotification title={data.title} description={data.description} deadline={data.deadline} price={data.price} id={data.id} key={data.id} address={data.developer_address}/>
+                <PendingTaskNotification title={data.title} description={data.description}  price={data.price} id={data.id} key={data.id} developer_address={data.developer_address} accepted={data.accepted} buyer_address={data.buyer_address}  />
+        
 
             ))}
           </div>

@@ -2,6 +2,9 @@ import React, { useEffect } from 'react'
 import { BASE_URL } from '../../../utils/Api';
 import { useMutation } from 'react-query';
 import axios from 'axios';
+import { useContractWrite, usePrepareContractWrite } from 'wagmi';
+import escrowAbi from "../../../utils/escrowAbi.json"
+import { AiOutlineCheck, AiOutlineCloseCircle } from 'react-icons/ai';
 
 const PendingTaskNotification = (props) => {
   
@@ -14,7 +17,7 @@ const PendingTaskNotification = (props) => {
     
       const {mutate: accept, isLoading:acceptLoading, isSuccess: acceptSuccess, isError:acceptIsError, error: acceptError} = useMutation({
         mutationFn:(data)=>{
-          return axios.post(`${BASE_URL}/tasks/accept`,data, config)
+          return axios.post(`${BASE_URL}//task/pay`,data, config)
         },
         //  onSuccess:() =>{
         //   // queryClient.invalidateQueries("")
@@ -31,7 +34,7 @@ const PendingTaskNotification = (props) => {
         const Accept = (e) =>{
             e.preventDefault()
             console.log("clicked");
-            accept({task_id:props.id, address:props.address})
+            accept({task_id:props.id, buyer_address:props.address, agent_address:"addr", developer_address:props.developer_address,  })
         }
         const Reject = (e) =>{
             e.preventDefault()
@@ -82,16 +85,17 @@ const PendingTaskNotification = (props) => {
         <h5 className="text-[14px]  text-[#484679] font-medium leading-4 "><span className='font-semibold'>Task title:</span> {props.title}</h5>
     
     <p className="text-[12px] pr-2 text-[#484679] font-normalmt-2"> <span className='font-semibold'>Task description:</span> {props.description}</p>
-    <p className="text-[12px]  pr-2 text-[#484679] font-normalmt-2"> <span className='font-semibold'>Days:</span> {props.deadline/86400}</p>
     
     <p className="text-[12px]  pr-2 text-[#484679] font-normalmt-2"> <span className='font-semibold'>Price:</span> {props.price}</p>
             </div>
+                { props.accepted &&
              <div className=" flex gap-3 ">
-    
-    <AiOutlineCloseCircle onClick={Reject}  className='text-red cursor-pointer' size={20}/>
-    
-    <AiOutlineCheck onClick={Accept} className='text-[green] cursor-pointer' size={20}/>
+
+    <button onClick={Accept}  className='text-[12px] bg-fair-blue rounded-lg h-[40px] px-4 text-[#FFFFFF] '>Pay With Eth</button>
+    <button className='text-[12px] bg-red rounded-lg h-[40px] px-4 text-[#FFFFFF] '>Pay With DXC</button>
+ 
             </div>
+                }
     </div>
         </div>
       )
