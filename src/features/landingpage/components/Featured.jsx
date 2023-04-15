@@ -22,7 +22,7 @@ const Featured = (prop) => {
   };
 
   return (
-    <div className=" w-[23%] lgDesktop:w-[30.19%] smDesktop:w-[47%] smDesk:w-[46%] tablet:w-[45.9%] rounded-lg pb-10 bg-[#EFF2F9] mobile:w-[100%] ">
+    <div className=" w-[22.54%] lgDesktop:w-[30.19%] smDesktop:w-[47%] smDesk:w-[46%] tablet:w-[45.9%] rounded-lg pb-10 bg-[#EFF2F9] mobile:w-[100%] ">
       <img src={prop.imgSrc} className="w-full h-3/5 rounded-t-lg" />
       <div className="flex justify-between w-[90%] mx-auto items-center">
         <div className="flex items-center">

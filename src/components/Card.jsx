@@ -45,7 +45,7 @@ const Card = (prop) => {
                 <div className='flex justify-between w-full'>
                         <div className='flex w-full'>
                             <div>
-                            <img src={prop.avatar} className='w-10 rounded-[80%] mt-5 pl-3'/>
+                             <img src={prop.avatar} className='w-10 rounded-[80%] mt-5 pl-3'/>
                             </div>
                             <div className='mt-4 ml-4'>
                             <h4 className='font-bold text-1xl text-fair-blue'>{prop.username}</h4>

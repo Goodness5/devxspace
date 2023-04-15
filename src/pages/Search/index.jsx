@@ -5,6 +5,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import useFetchServices from "../../features/services/hooks/useFetchServices";
+import {BiSearch} from 'react-icons/bi'
 
 
 const Search = () => {
@@ -12,7 +13,7 @@ const Search = () => {
   console.log("heee", data);
   return (
     <div className='relative' >
-      <div className="bg-[#052c5b] h-42 ">
+      <div className="bg-[#052c5b] h-[200px] ">
         <div className="w-2/3 flex flex-col ml-32">
           <h2 className="text-4xl font-bold mt-10 text-white">
             Search Services
@@ -22,11 +23,18 @@ const Search = () => {
       </div>
      
       <div className='relative bg-white'>
-      <div className='my-4 w-[30%] flex justify-end absolute right-20' >
-    <TextField id="outlined-basic"
-          variant="outlined"
+      <div className='my-4 w-[30%] flex justify-end absolute right-20 items-center' >
+        <div className="flex w-[100%] items-center bg-grey rounded-lg h-[50px]">
+
+        <BiSearch size={25} className="ml-[10px]"/>
+    <TextField 
+          variant="standard"
           fullWidth
-          label="Search" />
+          InputProps={{
+            disableUnderline: true,
+          }}
+          label="Search" className="w-[90%] ml-auto" />
+        </div>
 
       </div>
       </div>

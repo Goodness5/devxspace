@@ -10,7 +10,7 @@ const PageLayout = ({children}) =>{
 
     return(
         <div>
-            {/* <Navbar /> */}
+            <Navbar />
             {children}
 
             <Footer />
