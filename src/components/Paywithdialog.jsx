@@ -98,8 +98,6 @@ const Paywithdialog = (props) => {
   
     
     
-    
-    
     const handleTokenClick = async (e) =>{
     e.preventDefault();
     try {

@@ -23,7 +23,7 @@ const Card = (prop) => {
     const {mutate, isLoading, isError, error, isSuccess} = useHireDev()
 
       const handleProceed = () =>{
-        const poolID = parseInt((data.logs[0].data.slice(-64)),16);
+        // const poolID = parseInt((data.logs[0].data.slice(-64)),16);
         const hireMe ={
           buyer_address:address,
           title,
@@ -31,11 +31,11 @@ const Card = (prop) => {
           time_frame:deadline,
           price:price,
           developer_address:prop.address,
-          task_id:poolID
+          // task_id:poolID
         }; 
         (mutate(hireMe))
         setOpen(false);
-        console.log(parseInt((data.logs[0].data.slice(-64)),16));
+        // console.log(parseInt((data.logs[0].data.slice(-64)),16));
       }
      
 
