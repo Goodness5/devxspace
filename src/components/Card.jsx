@@ -54,11 +54,14 @@ const Card = (prop) => {
 
     <div className='w-[23%] lgDesktop:w-[30.5%] smDesktop:w-[29.78%] smDesk:w-[47%] tabletAir:w-[46%] tablet:w-[45.7%] mobile:w-[100%] h-[450px] rounded-lg pb-10 bg-white'>
 
+
         <img src={prop.imgSrc} className='w-full h-[60%] rounded-t-lg object-cover'/>
                 <div className='flex justify-between w-full'>
                         <div className='flex w-[90%] mx-auto mt-4 items-center'>
                             <div>
+
                              <img src={prop.avatar} className='w-10 h-10 rounded-full '/>
+
                             </div>
                             <div className=' ml-4'>
                             <h4 className='font-bold text-[14px] capitalize text-fair-blue'>{prop.username}</h4>

@@ -23,12 +23,14 @@ const Search = () => {
       </div>
      
       <div className='relative bg-white'>
+
       <div className='my-4 w-[30%] flex justify-end absolute right-20 items-center' >
         <div className="flex w-[100%] items-center bg-[#FFFFFF] rounded-lg h-[50px]">
 
         <BiSearch size={20} className="ml-[10px] mt-4"/>
     <TextField 
           variant="standard"
+
           fullWidth
           InputProps={{
             disableUnderline: true,
@@ -38,9 +40,11 @@ const Search = () => {
 
       </div>
       </div>
+
       <div className="w-[100%] bg-[#EFF2F9] pb-10 pt-5">
 
       <div className='flex flex-wrap w-[90%] gap-9  lgDesktop:gap-12 tabletAir:gap-14 content-center  mx-auto  mt-24' >
+
         {data?.map((e) => {
          
           
