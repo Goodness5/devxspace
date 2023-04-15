@@ -70,6 +70,7 @@ if(isSuccess){
               type="text"
               fullWidth
               value={title}
+              inputProps={{ maxLength: 30 }}
               onChange={(e)=>setTitle(e.target.value)}
               className="my-3"
             />   
@@ -81,6 +82,7 @@ if(isSuccess){
               rows={4}
               multiline
               value={description}
+              inputProps={{ maxLength: 300 }}
               onChange={(e)=>setDescription(e.target.value)}
               className="my-3"
             />
