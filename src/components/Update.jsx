@@ -155,6 +155,7 @@ mutate(people)
               type="text"
               fullWidth
               value={userName}
+              inputProps={{ maxLength: 20 }}
               onChange={(e) => setUserName(e.target.value)}
 
               className="my-3"
@@ -167,6 +168,7 @@ mutate(people)
               multiline
               rows={4}
               value={about}
+              inputProps={{ maxLength: 200 }}
               onChange={(e) =>setAbout(e.target.value) }
 
               className="my-3"
@@ -177,6 +179,7 @@ mutate(people)
               label="Skill"
               type="text"
               value={skills}
+              inputProps={{ maxLength: 50 }}
               onChange={(e) =>setSkills(e.target.value)}
 
               className="my-3"
@@ -215,7 +218,7 @@ mutate(people)
               type="text"
               fullWidth
               value={userName}
-
+              inputProps={{ maxLength: 20 }}
               onChange={(e)=>setUserName(e.target.value)}
 
               className="my-3"
@@ -228,6 +231,7 @@ mutate(people)
               multiline
               rows={4}
               value={about}
+              inputProps={{ maxLength: 200 }}
               onChange={(e)=>setAbout(e.target.value)}
 
               className="my-3"

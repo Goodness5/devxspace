@@ -22,7 +22,7 @@ const Search = () => {
       </div>
      
       <div className='relative bg-white'>
-      <div className='my-4 w-[30%] flex justify-end absolute right-20 top-20' >
+      <div className='my-4 w-[30%] flex justify-end absolute right-20' >
     <TextField id="outlined-basic"
           variant="outlined"
           fullWidth
@@ -30,7 +30,7 @@ const Search = () => {
 
       </div>
       </div>
-      <div className='lg:flex flex-wrap w-[100%] flex justify-center content-center float-left bg-[#EFF2F9] mt-20' >
+      <div className='lg:flex flex-wrap w-[100%] flex content-center gap-6 mx-auto bg-[#EFF2F9] mt-24' >
         {data?.map((e) => {
          
           

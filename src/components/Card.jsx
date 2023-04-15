@@ -39,13 +39,13 @@ const Card = (prop) => {
       }
     return (
 
-    <div className='mt-10  mb-10 lg:mx-8 lg:w-[30%] xl:w-[20%] md:w-[30%] shadow-xl shadow-cyan-400/50 rounded-lg pb-10 bg-white'>
+    <div className='mb-10 lg:mx-8 lg:w-[30%] xl:w-[25%] xl:ml-16 md:w-[30%] shadow-xl shadow-cyan-400/50 rounded-lg pb-10 bg-white'>
 
         <img src={prop.imgSrc} className='w-full h-3/5 rounded-t-lg'/>
                 <div className='flex justify-between w-full'>
                         <div className='flex w-full'>
                             <div>
-                            <img src={prop.avatar} className='w-10 rounded-full mt-5 pl-3'/>
+                            <img src={prop.avatar} className='w-10 rounded-[80%] mt-5 pl-3'/>
                             </div>
                             <div className='mt-4 ml-4'>
                             <h4 className='font-bold text-1xl text-fair-blue'>{prop.username}</h4>
@@ -75,10 +75,10 @@ const Card = (prop) => {
         <DialogContentText>
             Specify the nature of the task, be as detailed as possible. Payment won't be made until offer is accepted
           </DialogContentText>
-          <TextField autoFocus margin="dense" id="name" label="Title" type="text" fullWidth variant="standard" value={title} onChange={(e) =>setTitle(e.target.value)}/>
-          <TextField autoFocus margin="dense" id="name" label="Description" type="text" fullWidth variant="standard" value={jobDetails} onChange={(e) =>setJobDetails(e.target.value)}/>
-          <TextField autoFocus margin="dense" id="name" label="Price" type="text" fullWidth variant="standard" value={price} onChange={(e) =>setPrice(e.target.value)}/>
-          <TextField autoFocus margin="dense" id="name" label="Deadline" type="number" fullWidth variant="standard" value={deadline} onChange={(e) =>setDeadline(e.target.value)}/>
+          <TextField autoFocus margin="dense" label="Title" type="text" fullWidth inputProps={{ maxLength: 30 }} value={title} onChange={(e) =>setTitle(e.target.value)}/>
+          <TextField autoFocus margin="dense" label="Description" type="text" fullWidth  value={jobDetails} rows={4} multiline inputProps={{ maxLength: 300 }} onChange={(e) =>setJobDetails(e.target.value)}/>
+          <TextField autoFocus margin="dense" label="Price(ETH/DXC)" type="text" fullWidth  value={price} onChange={(e) =>setPrice(e.target.value)}/>
+          <TextField autoFocus margin="dense" label="Deadline" type="number" fullWidth  value={deadline}  InputProps={{ inputProps: { min: 1 } }} onChange={(e) =>setDeadline(e.target.value)}/>
         </DialogContent>
         <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
