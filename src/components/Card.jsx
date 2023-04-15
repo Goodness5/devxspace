@@ -52,32 +52,35 @@ const Card = (prop) => {
       }
     return (
 
-    <div className='mb-10 lg:mx-8 lg:w-[30%] xl:w-[25%] xl:ml-16 md:w-[30%] shadow-xl shadow-cyan-400/50 rounded-lg pb-10 bg-white'>
+    <div className='w-[23%] lgDesktop:w-[30.5%] smDesktop:w-[29.78%] smDesk:w-[47%] tabletAir:w-[46%] tablet:w-[45.7%] mobile:w-[100%] h-[450px] rounded-lg pb-10 bg-white'>
 
-        <img src={prop.imgSrc} className='w-full h-3/5 rounded-t-lg'/>
+
+        <img src={prop.imgSrc} className='w-full h-[60%] rounded-t-lg object-cover'/>
                 <div className='flex justify-between w-full'>
-                        <div className='flex w-full'>
+                        <div className='flex w-[90%] mx-auto mt-4 items-center'>
                             <div>
-                            <img src={prop.avatar} className='w-10 rounded-[80%] mt-5 pl-3'/>
+
+                             <img src={prop.avatar} className='w-10 h-10 rounded-full '/>
+
                             </div>
-                            <div className='mt-4 ml-4'>
-                            <h4 className='font-bold text-1xl text-fair-blue'>{prop.username}</h4>
+                            <div className=' ml-4'>
+                            <h4 className='font-bold text-[14px] capitalize text-fair-blue'>{prop.username}</h4>
                             <p className='text-fair-blue'>{prop.order}</p>
                             </div>
                         </div>
-                    <div className='flex pr-3'>
+                    {/* <div className='flex pr-3'>
                     <div className={"heart" + (isActive ? " is-active" : "")}
                     onClick={handleLike}></div>
-                    </div>
+                    </div> */}
                 </div>
-        <div className='w-full'>
-            <div></div>
-            <h2 className='text-fair-blue text-2xl font-bold px-4'>{prop.skill}</h2>
-            <p className='text-fair-blue text-2xl font-bold px-4'>{prop.description}</p>
+        <div className='w-[90%] mx-auto'>
+            <h2 className='text-fair-blue text-[18px] capitalize mt-2 font-bold px-4'>{prop.skill}</h2>
+            <p className=' text-[14px] font-normal mx-auto text-left mt-4 break-words leading-4'>{prop.description.slice(0,100)}</p>
+          
             <div className='flex justify-end'>
             {/* <h2 className='text-red font-bold text-2xl pl-4 pt-1'>From {prop.price}</h2> */}
 
-            <button className="px-7 py-2 border border-blue-300 rounded-lg mr-4 bg-regal-blue text-white" onClick={handleClickOpen} >HIRE</button>
+            <button className="px-7 py-2 border border-blue-300 rounded-lg mr-4 mt-4 bg-regal-blue text-white" onClick={handleClickOpen} >HIRE</button>
             </div>
         </div>
     
