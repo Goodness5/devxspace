@@ -12,6 +12,9 @@ import TaskNotification from "./TaskNotification";
 import BuyerTask from "./BuyerTask";
 import { Switch } from '@headlessui/react'
 
+import PendingTask from './PendingTask';
+
+
 const ProfileDashboard = () => {
   const [enabled, setEnabled] = useState(false)
 
@@ -125,6 +128,9 @@ const ProfileDashboard = () => {
           </div>
           <div className="">
             {enabled && <TaskNotification/>}
+
+            {!enabled &&<PendingTask/>}
+
             {enabled && <Task/>}
             {!enabled && <BuyerTask/>}
           </div>

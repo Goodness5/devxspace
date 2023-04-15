@@ -9,14 +9,14 @@ const LandingPage = () => {
         <div className="bg-cover bg-center landing-top-img flex flex-col bg-[#000000]">
         
         <div className="text-center z-[1] m-auto flex flex-col mt-64">
-          <h1 className="text-white text-[58px] font-bold">Welcome to devxspace</h1>
-          <p className="text-white text-[24px]">This is a decentralized freelancing platform</p>
+          <h1 className="text-white text-[58px] font-bold mobile:text-[28px] smMobile:text-[24px] Xmobile:text-[20px] tablet:text-[38px] ">Welcome to devxspace</h1>
+          <p className="text-white text-[24px] tablet:text-[18px] mobile:text-[16px]">This is a decentralized freelancing platform</p>
 
-          <div className=' flex mx-auto gap-[20px] mt-[20px]'>
-            <button className='pt-5 px-6 pb-5 text-[16px] hover:bg-[#052C5B]  hover:text-white rounded-full bg-white'>
+          <div className=' flex mx-auto gap-[20px] mt-[20px] mobile:mt-[40px]'>
+            <button className='pt-5 px-6 pb-5 text-[16px] mobile:text-[12px] hover:bg-[#052C5B]  hover:text-white rounded-full bg-white'>
               Hire Freelancers
             </button>
-            <button className='pt-5 px-6 pb-5 text-[16px]  rounded-full text-[#FFFFFF] bg-[#052C5B] hover:text-[#000000] hover:bg-white'>
+            <button className='pt-5 px-6 pb-5 text-[16px] mobile:text-[12px]  rounded-full text-[#FFFFFF] bg-[#052C5B] hover:text-[#000000] hover:bg-white'>
               Looking For Job
             </button>
 
