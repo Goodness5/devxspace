@@ -1,5 +1,5 @@
 /** @format */
-
+import { useState } from 'react'
 import Image from "next/image";
 import avatar from "../../../images/avatar.png";
 import { FiMap, FiAlertCircle, FiCheckCircle } from "react-icons/fi";
@@ -10,8 +10,10 @@ import useFetchProfile from "../hooks/useFetchProfile";
 import { BASE_URL } from "../../../utils/Api";
 import TaskNotification from "./TaskNotification";
 import BuyerTask from "./BuyerTask";
+import { Switch } from '@headlessui/react'
 
 const ProfileDashboard = () => {
+  const [enabled, setEnabled] = useState(false)
 
   const {address} = useAccount();
 
@@ -39,6 +41,22 @@ const ProfileDashboard = () => {
             <p className="text-[12px] text-center mt-1 leading-4">
               Web3 Developer
             </p>
+            <div className="py-10 flex w-[100%] mr-10 justify-between">
+      <Switch
+        checked={enabled} 
+        onChange={setEnabled}
+        className={`${enabled ? 'bg-teal-900' : 'bg-teal-700'}
+          relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+      >
+        <span className="sr-only">Use setting</span>
+        <span
+          aria-hidden="true"
+          className={`${enabled ? 'translate-x-9' : 'translate-x-0'}
+            pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+        />
+      </Switch>
+        <p className='w-[50%]'>{enabled ? "Freelancer Profile" : "Buyer Profile"}</p>
+    </div>
           </div>
         </section>
         <section className="w-[80%] mt-5">
@@ -106,9 +124,9 @@ const ProfileDashboard = () => {
             </div>
           </div>
           <div className="">
-            <TaskNotification/>
-            <Task/>
-            <BuyerTask/>
+            {enabled && <TaskNotification/>}
+            {enabled && <Task/>}
+            {!enabled && <BuyerTask/>}
           </div>
 
           <div className="w-[100%] bg-[#FFFFFF] mt-5 rounded-lg">
