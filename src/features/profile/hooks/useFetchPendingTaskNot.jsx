@@ -5,8 +5,8 @@ import axios from "axios"
 
 const useFetchPendingTaskNot = (address) => {
 
-    const API = `${BASE_URL}/payable/${address}`
-
+    const API = `${BASE_URL}/tasks_accepted/${address}`
+    
     const config ={
         headers:{
             "Content-Type": "application/json",
