@@ -4,6 +4,9 @@ import { BASE_URL } from '../../../utils/Api';
 import { useMutation } from 'react-query';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import escrowAbi from "../../../utils/escrowAbi.json"
+import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
+
 
 const SingleTaskNotification = (props) => {
 
@@ -38,9 +41,21 @@ const SingleTaskNotification = (props) => {
     }
     const Reject = (e) =>{
         e.preventDefault()
-        console.log("clicked");
+        approveCancel();
+        console.log({task_id:props.id, address:props.address});
         reject({task_id:props.id, address:props.address})
     }
+
+
+    const { config : cancelConfig } = usePrepareContractWrite({
+      address: '0x75c5C6E08C2Cd06C7fB6a484a1d7C8d6901d4B65',
+      abi: escrowAbi,
+      functionName: 'approveCancel',
+      args: [props.id]
+    })
+    const { data: ApproveCancelData, isLoading, isSuccess, write: approveCancel } = useContractWrite(cancelConfig)
+  
+
 
 
     useEffect(()=>{
