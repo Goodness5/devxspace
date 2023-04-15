@@ -53,18 +53,6 @@ const Paywithdialog = (props) => {
     const {data: payEthWaitData, isLoading: payEthdataWaitLoading, isSuccess : ispayEthdataSuccess} = useWaitForTransaction({
       hash: payEthdata?.hash,
       onSuccess(data) {
-        const poolID = parseInt((data.logs[0].data.slice(-64)),16);
-        const hireMe ={
-          buyer_address:address,
-          title:props.titleProp,
-          description:props.jobDetailsProp,
-          time_frame:props.deadlineProp,
-          price:props.priceProp,
-          developer_address:props.address,
-          task_id:poolID
-        }; 
-        (mutate(hireMe))
-        console.log(parseInt((data.logs[0].data.slice(-64)),16));
       },
       onError(error) {
         console.log(error);
