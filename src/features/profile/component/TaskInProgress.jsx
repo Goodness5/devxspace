@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useMutation } from 'react-query';
 import { BASE_URL } from '../../../utils/Api';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const TaskInProgress = (props) => {
     const config = {
@@ -11,9 +12,9 @@ const TaskInProgress = (props) => {
         },
       };
     
-      const {mutate: accept, isLoading:acceptLoading, isSuccess: acceptSuccess, isError:acceptIsError, error: acceptError} = useMutation({
+      const {mutate: accept, isLoading:acceptLoading, isSuccess: acceptSuccess, isError:acceptIsError, error: acceptError, } = useMutation({
         mutationFn:(data)=>{
-          return axios.post(`${BASE_URL}/tasks/submit`,data, config)
+          return axios.post(`${BASE_URL}/finalize`,data, config)
         },
         //  onSuccess:() =>{
         //   // queryClient.invalidateQueries("")
@@ -23,8 +24,14 @@ const TaskInProgress = (props) => {
       const Accept = (e) =>{
         e.preventDefault()
         
-        accept({task_id:props.id, address:props.address})
+        accept({task_id:props.id, address:props.address, status:1})
+
     }
+        const Reject =(e)=>{
+            e.preventDefault();
+            accept({task_id:props.id, address:props.address, status:0})
+
+        }
 
     useEffect(()=>{
         if(acceptLoading){
@@ -47,7 +54,16 @@ const TaskInProgress = (props) => {
         <h5 className="text-[14px] pl-6  text-[#484679] font-semibold leading-4 ">{props.title}</h5>
 
     <p className="text-[12px] pl-6 pr-2 text-[#484679] font-normalmt-2">{props.description}</p>
-    <button onClick={Accept} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-4 rounded-lg border-[1px] bg-[#052C5B] '>Submit Task</button>
+    <div className="flex gap-2 justify-end mr-4">
+{
+props.completed &&
+<div className="">
+
+    <button onClick={Accept} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-2 rounded-lg border-[1px] bg-[#052C5B] '> Accept Submition</button>
+    <button onClick={Reject} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-4 rounded-lg border-[1px] bg-red '> Reject Submition</button>
+</div>
+}
+    </div>
     </div>
 
             </div>
