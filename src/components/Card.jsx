@@ -8,23 +8,36 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Paywithdialog from './Paywithdialog';
 import useHireDev from '../features/services/hooks/useHireDev';
+import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction, useContractRead } from 'wagmi';
+
 
 const Card = (prop) => {
-    const [isActive, setIsActive] = useState(false);
+  const {address} = useAccount('')
+  const [isActive, setIsActive] = useState(false);
     const [open, setOpen] = useState(false);
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('')
     const [jobDetails, setJobDetails] = useState('')
     const [deadline, setDeadline] = useState(0)
-    const [openPay, setPay] = useState(false);
+    
     const {mutate, isLoading, isError, error, isSuccess} = useHireDev()
 
-      const handlePay = () =>{
-        setPay(true);
+      const handleProceed = () =>{
+        const poolID = parseInt((data.logs[0].data.slice(-64)),16);
+        const hireMe ={
+          buyer_address:address,
+          title,
+          description:jobDetails,
+          time_frame:deadline,
+          price:price,
+          developer_address:prop.address,
+          task_id:poolID
+        }; 
+        (mutate(hireMe))
+        setOpen(false);
+        console.log(parseInt((data.logs[0].data.slice(-64)),16));
       }
-      const handlepayClose = () =>{
-        setPay(false);
-      }
+     
 
       const handleClickOpen = () => {
         setOpen(true);
@@ -82,15 +95,15 @@ const Card = (prop) => {
         </DialogContent>
         <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handlePay}>{isLoading ? "processing" : "Proceed"}</Button>
+          <Button onClick={handleProceed}>{isLoading ? "processing" : "Proceed"}</Button>
         </DialogActions>
       </Dialog>
     </div>
 
-     {openPay && <Paywithdialog handlePayWith={handlePay} handlePaywithClose={handlepayClose} 
+     {/* {openPay && <Paywithdialog handlePayWith={handlePay} handlePaywithClose={handlepayClose} 
         titleProp={title} priceProp={price} jobDetailsProp={jobDetails} deadlineProp={deadline} 
         address={prop.address}
-     />}
+     />} */}
 
     </div>
 
