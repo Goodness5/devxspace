@@ -22,13 +22,13 @@ const AvailableJobs = (prop) => {
   };
 
   return (
-    <div className=" w-[23%] rounded-lg pb-[20px] bg-[#EFF2F9]">
+    <div className=" w-[23%] mobile:w-[100%] tabletAir:w-[50%] lgDesktop:w-[48%] smDesktop:w-[47%] tablet:w-[45%] rounded-lg pb-[20px] bg-[#EFF2F9]">
     
-      <div className="w-full">
+      <div className="w-[90%] mx-auto">
     
         <h2 className="text-fair-blue text-[16px] leading-[18px] mt-[20px] font-bold px-4">Are you available for Hire</h2>
         <p className="text-fair-blue text-[14px] leading-[18px] mt-[4px] px-4">Looking for a web3 Developer to build an amazing nft market place for my team</p>
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
         <h2 className="text-[#132C8D] font-bold text-[16px] pl-4 pt-1 ">
             offer {prop.price}
           </h2>
@@ -37,7 +37,7 @@ const AvailableJobs = (prop) => {
             className="px-7 py-2 mt-[12px] text-[14px] border border-blue-300 rounded-lg mr-4 bg-[#132C8D] hover:bg-[#052C5B] text-white"
             onClick={handleClickOpen}
           >
-            Learn more
+            Apply
           </button>
         </div>
       </div>

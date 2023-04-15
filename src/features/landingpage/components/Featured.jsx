@@ -22,29 +22,26 @@ const Featured = (prop) => {
   };
 
   return (
-    <div className="mt-10 mb-10 w-[23%] rounded-lg pb-10 bg-[#EFF2F9]">
+    <div className=" w-[23%] lgDesktop:w-[30.19%] smDesktop:w-[47%] smDesk:w-[46%] tablet:w-[45.9%] rounded-lg pb-10 bg-[#EFF2F9] mobile:w-[100%] ">
       <img src={prop.imgSrc} className="w-full h-3/5 rounded-t-lg" />
-      <div className="flex justify-between w-full">
-        <div className="flex w-full">
+      <div className="flex justify-between w-[90%] mx-auto items-center">
+        <div className="flex items-center">
           <div>
-            <img src={prop.avatar} className="w-10 rounded-full mt-5 pl-3" />
+            <img src={prop.avatar} className="w-10 rounded-[100%] mt-5 h-10" />
           </div>
           <div className="mt-4 ml-4">
             <h4 className="font-bold text-[16px] text-fair-blue">
               {prop.username}
             </h4>
-            <p className="text-fair-blue text-[14px]">{prop.order}</p>
+           
           </div>
         </div>
        
       </div>
-      <div className="w-full">
-        <div></div>
-        <h2 className="text-fair-blue text-[16px] leading-[18px] font-bold px-4">{prop.skill}</h2>
-        <div className="flex justify-between">
-          <h2 className="text-[#132C8D] font-bold text-[16px] pl-4 pt-1 ">
-            From {prop.price}
-          </h2>
+      <div className="w-[90%] mx-auto">
+        
+        <h2 className="text-fair-blue text-[16px] leading-[18px] font-bold px- mt-2 ">{prop.skill}</h2>
+        <div className="flex justify-end mt-4">
           <button
             className="px-7 py-2 text-[14px] border border-blue-300 rounded-lg mr-4 bg-[#132C8D] hover:bg-[#052C5B] text-white"
             onClick={handleClickOpen}
