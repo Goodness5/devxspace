@@ -22,11 +22,15 @@ const Agent = () => {
           ) : (
             <>
 {
-    data?.tasks?.map((data)=>(
-    
-      
+    data?.map((data)=>(
+        <>
+    {
+        data.accepted &&
         <ReleaseFund title={data.title} description={data.description}  id={data.task_id} address={data.developer_address} key={data.task_id} completed={data.completed} developer_address={data.developer_address} buyer_address={data.buyer_address}/>
-       
+    }
+        </>
+      
+    
     ))
 }
             </>
