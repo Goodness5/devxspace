@@ -5,12 +5,6 @@ import axios from 'axios';
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction, useContractRead } from 'wagmi';
 import { AiOutlineCheck, AiOutlineCloseCircle } from 'react-icons/ai';
 import { toast } from 'react-toastify';
-// import Paywithdialog from '../../../components/Paywithdialog';
-import escrowAbi from "../../../utils/escrowAbi.json";
-import token_abi from "../../../utils/token_abi.json";
-import { ethers } from 'ethers';
-import useHireDev from '../../services/hooks/useHireDev';
-
 
 const PendingTaskNotification = (props) => {
     const {address} = useAccount('')
