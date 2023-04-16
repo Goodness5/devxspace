@@ -4,7 +4,7 @@ import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { BASE_URL } from '../../../utils/Api';
 
-const ReleaseFund = (props) => {
+const ReturnFund = (props) => {
     const config = {
         headers: {
           "Content-Type": "application/json",
@@ -12,35 +12,35 @@ const ReleaseFund = (props) => {
         },
       };
     
-      const {mutate: accept, isLoading:acceptLoading, isSuccess: acceptSuccess, isError:acceptIsError, error: acceptError} = useMutation({
+  
+      const {mutate: cancel, isLoading:cancelLoading, isSuccess: cancelSuccess, isError:canceIsError, error: cancelError} = useMutation({
         mutationFn:(data)=>{
-          return axios.post(`${BASE_URL}/agent/release_fund`,data, config)
+          return axios.post(`${BASE_URL}/agent/refund`,data, config)
         },
         //  onSuccess:() =>{
         //   // queryClient.invalidateQueries("")
         // }
       })
-      
 
-      const Accept = (e) =>{
+  
+      const Cancel = (e) =>{
         e.preventDefault()
         
-        accept({task_id:props.id, agent_address:props.agent_address})
+        cancel({task_id:props.id, agent_address:props.agent_address,})
     }
 
-
     useEffect(()=>{
-        if(acceptLoading){
-            toast.info("releasing fund",)
+       
+        if(cancelLoading){
+            toast.error("refunding...")
         }
-        if(acceptSuccess){
-            toast.success("fund released")
+        if(canceIsError){
+            toast.error(cancelError?.response?.data?.error)
         }
-        if(acceptIsError){
-            toast.error(acceptError?.response?.data?.error)
+        if(cancelSuccess){
+            toast.success("Fund released")
         }
-      
-    },[acceptLoading, acceptSuccess, acceptIsError, acceptError])
+    },[ cancelLoading, canceIsError, cancelSuccess, cancelError])
 
   return (
     <section>
@@ -55,8 +55,8 @@ const ReleaseFund = (props) => {
     
 <div className="">
 
-    <button onClick={Accept} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-4 rounded-lg border-[1px] bg-[#052C5B] '>Release Fund</button> 
-
+   
+    <button onClick={Cancel} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-4 rounded-lg border-[1px] bg-red '>Return Fund</button> 
 </div>
     
 
@@ -67,4 +67,4 @@ const ReleaseFund = (props) => {
   )
 }
 
-export default ReleaseFund
+export default ReturnFund
