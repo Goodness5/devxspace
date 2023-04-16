@@ -13,6 +13,7 @@ import BuyerTask from "./BuyerTask";
 import { Switch } from '@headlessui/react'
 
 import PendingTask from './PendingTask';
+import Agent from './Agent';
 
 
 const ProfileDashboard = () => {
@@ -127,6 +128,7 @@ const ProfileDashboard = () => {
             </div>
           </div>
           <div className="">
+            <Agent/>
             {enabled && <TaskNotification/>}
 
             {!enabled &&<PendingTask/>}
