@@ -37,7 +37,7 @@ const OnGoingTask = (props) => {
       const Cancel = (e) =>{
         e.preventDefault()
         
-        cancel({task_id:props.id, buyer_address:props.buyer_address, developer_address:props.developer_address})
+        cancel({task_id:props.id, address:props.buyer_address, developer_address:props.developer_address})
     }
 
     useEffect(()=>{
