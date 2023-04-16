@@ -8,7 +8,7 @@ import { useAccount } from "wagmi";
 const Task = () => {
     const {address} =useAccount()
     const {data} = useFetchOngoinTask(address)
-    console.log(data);
+    console.log("onGoing Task",data);
   return (
     <section className="mt-4">
       <section className="flex gap-4">

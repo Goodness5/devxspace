@@ -50,7 +50,13 @@ const OnGoingTask = (props) => {
     <p className="text-[14px] pl-6 pr-2 text-[#484679] font-normalmt-2">{props.description}</p>
     {
 !props.completed ?
-    <button onClick={Accept} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-4 rounded-lg border-[1px] bg-[#052C5B] '>Submit Task</button> : <p className='text-[14px] pl-6'>In Review</p>
+<div className="">
+
+    <button onClick={Accept} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-4 rounded-lg border-[1px] bg-[#052C5B] '>Submit Task</button> 
+    <button onClick={Accept} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-4 rounded-lg border-[1px] bg-red '>Cancel Task</button> 
+</div>
+    
+    : <p className='text-[14px] pl-6'>In Review</p>
 }
 </div>
 
