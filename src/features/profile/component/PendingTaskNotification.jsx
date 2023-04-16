@@ -3,14 +3,18 @@ import { BASE_URL } from '../../../utils/Api';
 import { useMutation } from 'react-query';
 import axios from 'axios';
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction, useContractRead } from 'wagmi';
-// import { AiOutlineCheck, AiOutlineCloseCircle } from 'react-icons/ai';
+import { AiOutlineCheck, AiOutlineCloseCircle } from 'react-icons/ai';
 import { toast } from 'react-toastify';
-// import useHireDev from '../../services/hooks/useHireDev';
-import escrowAbi from "../../../utils/escrowAbi.json"
+// import Paywithdialog from '../../../components/Paywithdialog';
+import escrowAbi from "../../../utils/escrowAbi.json";
+import token_abi from "../../../utils/token_abi.json";
+import { ethers } from 'ethers';
+import useHireDev from '../../services/hooks/useHireDev';
+
 
 const PendingTaskNotification = (props) => {
     const {address} = useAccount('')
-    // const {mutate, isLoading, isError, error, isSuccess} = useHireDev()
+    const {mutate, isLoading, isError, error, isSuccess} = useHireDev()
     const [isActive, setIsActive] = useState(false);
     const [allowance, setAllowance] = useState(0);
    
