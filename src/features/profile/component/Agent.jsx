@@ -2,6 +2,7 @@ import React from "react";
 
 import { useAccount } from "wagmi"
 import ReleaseFund from "./ReleaseFund";
+import ReturnFund from "./ReturnFund";
 import useFetchAgentTask from "../hooks/useFetchAgentTask";
 
 const Agent = () => {
@@ -25,8 +26,8 @@ const Agent = () => {
     data?.map((data)=>(
         <>
     {
-        data.accepted &&
-        <ReleaseFund title={data.title} description={data.description}  id={data.task_id} address={data.developer_address} key={data.task_id} completed={data.completed} developer_address={data.developer_address} buyer_address={data.buyer_address}/>
+        data.finalized ===true  && data.fund_released===false &&
+        <ReleaseFund title={data.title} description={data.description}  id={data.id} address={data.developer_address} key={data.task_id} completed={data.completed} developer_address={data.developer_address} buyer_address={data.buyer_address} freelancer={data.developer.username} buyer={data.buyer.username} agent_address={data.agent_address}/>
     }
         </>
       
@@ -41,28 +42,26 @@ const Agent = () => {
           <h3 className="text-[14px] leading-5  pb-4 pt-4 font-semibold border-b-[1px] border-[#EFF2F9] text-[#1A274E] pl-6">
             Return Fund
           </h3>
-          <div className="mt-2 border-b-[1px] border-[#EFF2F9] mb-1 pb-2">
-            <h5 className="text-[14px] pl-6  text-[#484679] font-medium leading-4 ">
-              E-commerce Website
-            </h5>
-
-            <p className="text-[12px] pl-6 pr-2 text-[#484679] font-normalmt-2">
-              Someone bookmarked your SEO Expert Job listing! on Your way to
-              making beautiful memories to share with your friends family and
-              guest.
+          { data?.abort=== false ? (
+            <p className="pt-[40px] pb-[40px] pl-6 text-[16px]">
+              No Task Available
             </p>
-          </div>
-          <div className="mt-2 border-b-[1px] border-[#EFF2F9] mb-1 pb-2">
-            <h5 className="text-[14px] pl-6 text-[#484679] font-medium leading-4 ">
-              E-commerce Website
-            </h5>
-
-            <p className="text-[12px] pl-6 pr-2 text-[#484679] font-normalmt-2">
-              Someone bookmarked your SEO Expert Job listing! on Your way to
-              making beautiful memories to share with your friends family and
-              guest.
-            </p>
-          </div>
+          ) : (
+            <>
+{
+    data?.map((data)=>(
+        <>
+    {
+        data.finalized  === false && data.refund ===true &&
+        <ReturnFund title={data.title} description={data.description}  id={data.id} address={data.developer_address} key={data.id} completed={data.completed} developer_address={data.developer_address} buyer_address={data.buyer_address} freelancer={data.developer.username} buyer={data.buyer.username} agent_address={data.agent_address}/>
+    }
+        </>
+      
+    
+    ))
+}
+            </>
+           )}
         </div>
       </section>
     </section>
