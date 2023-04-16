@@ -38,7 +38,7 @@ const OnGoingTask = (props) => {
     }
       const Cancel = (e) =>{
         e.preventDefault()
-        approveCancel()
+        
         cancel({task_id:props.id, address:props.buyer_address, developer_address:props.developer_address})
     }
 
