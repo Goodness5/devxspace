@@ -8,7 +8,7 @@ import { useAccount } from "wagmi";
 const Task = () => {
     const {address} =useAccount()
     const {data} = useFetchOngoinTask(address)
-    console.log(data);
+    console.log("onGoing Task",data);
   return (
     <section className="mt-4">
       <section className="flex gap-4">
@@ -25,7 +25,7 @@ const Task = () => {
 {
     data?.tasks?.map((data)=>(
 
-        <OnGoingTask title={data.title} description={data.description}  id={data.task_id} address={data.developer_address} key={data.task_id} completed={data.completed}/>
+        <OnGoingTask title={data.title} description={data.description}  id={data.task_id} address={data.developer_address} key={data.task_id} completed={data.completed} developer_address={data.developer_address} buyer_address={data.buyer_address}/>
     ))
 }
             </>
