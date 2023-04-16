@@ -1,12 +1,12 @@
 import React from "react";
-import OnGoingTask from "./OnGoingTask";
-import useFetchOngoinTask from "../hooks/useFetchOngoinTask";
+
 import { useAccount } from "wagmi"
 import ReleaseFund from "./ReleaseFund";
+import useFetchAgentTask from "../hooks/useFetchAgentTask";
 
 const Agent = () => {
     const {address} =useAccount()
-    const {data} = useFetchOngoinTask(address)
+    const {data} = useFetchAgentTask(address)
     console.log("agent Task",data);
   return (
     <section className="mt-4">

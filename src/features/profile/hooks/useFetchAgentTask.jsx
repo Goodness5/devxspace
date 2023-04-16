@@ -1,4 +1,7 @@
 import React from 'react'
+import { BASE_URL } from '../../../utils/Api'
+import axios from 'axios'
+import { useQuery } from 'react-query'
 
 const useFetchAgentTask = (address) => {
     // /ongoing_tasks/<address>
