@@ -22,7 +22,7 @@ const PendingTask = () => {
         ) : (
           <div>
             {data?.tasks?.map((data) => (
-                <PendingTaskNotification title={data.title} description={data.description}  price={data.price} id={data.id} key={data.id} developer_address={data.developer_address} accepted={data.accepted} buyer_address={data.buyer_address}  />
+                <PendingTaskNotification title={data.title} description={data.description}  price={data.price} id={data.task_id} key={data.id} developer_address={data.developer_address} accepted={data.accepted} buyer_address={data.buyer_address} deadline={data.deadline} />
         
 
             ))}
