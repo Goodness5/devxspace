@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { BASE_URL } from '../../../utils/Api';
+import {usePrepareContractWrite, useContractWrite} from 'wagmi'
+import escrowAbi from '../../../utils/escrowAbi.json'
 
 const OnGoingTask = (props) => {
     const config = {
@@ -36,9 +38,18 @@ const OnGoingTask = (props) => {
     }
       const Cancel = (e) =>{
         e.preventDefault()
-        
-        cancel({task_id:props.id, buyer_address:props.buyer_address, developer_address:props.developer_address})
+        approveCancel()
+        cancel({task_id:props.id, address:props.buyer_address, developer_address:props.developer_address})
     }
+
+     const { config : cancelConfig } = usePrepareContractWrite({
+          address: '0x75c5C6E08C2Cd06C7fB6a484a1d7C8d6901d4B65',
+          abi: escrowAbi,
+          functionName: 'approveCancel',
+          args: [props.id]
+        })
+        const { data: ApproveCancelData, isLoading, isSuccess, write: approveCancel } = useContractWrite(cancelConfig)
+
 
     useEffect(()=>{
         if(acceptLoading){
