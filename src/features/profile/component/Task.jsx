@@ -25,7 +25,7 @@ const Task = () => {
 {
     data?.tasks?.map((data)=>(
 
-        <OnGoingTask title={data.title} description={data.description}  id={data.task_id} address={data.developer_address} key={data.task_id} completed={data.completed}/>
+        <OnGoingTask title={data.title} description={data.description}  id={data.task_id} address={data.developer_address} key={data.task_id} completed={data.completed} developer_address={data.developer_address} buyer_address={data.buyer_address}/>
     ))
 }
             </>

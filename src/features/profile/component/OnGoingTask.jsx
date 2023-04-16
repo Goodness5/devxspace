@@ -20,11 +20,24 @@ const OnGoingTask = (props) => {
         //   // queryClient.invalidateQueries("")
         // }
       })
+      const {mutate: cancel, isLoading:cancelLoading, isSuccess: cancelSuccess, isError:canceIsError, error: cancelError} = useMutation({
+        mutationFn:(data)=>{
+          return axios.post(`${BASE_URL}/abort`,data, config)
+        },
+        //  onSuccess:() =>{
+        //   // queryClient.invalidateQueries("")
+        // }
+      })
 
       const Accept = (e) =>{
         e.preventDefault()
         
         accept({task_id:props.id, address:props.address})
+    }
+      const Cancel = (e) =>{
+        e.preventDefault()
+        
+        cancel({task_id:props.id, buyer_address:props.buyer_address, developer_address:props.developer_address})
     }
 
     useEffect(()=>{
@@ -37,7 +50,16 @@ const OnGoingTask = (props) => {
         if(acceptIsError){
             toast.error(acceptError?.response?.data?.error)
         }
-    },[acceptLoading, acceptSuccess, acceptIsError, acceptError])
+        if(cancelLoading){
+            toast.error("canceling task")
+        }
+        if(canceIsError){
+            toast.error(cancelError?.response?.data?.error)
+        }
+        if(cancelSuccess){
+            toast.success("Task deleted succesfully")
+        }
+    },[acceptLoading, acceptSuccess, acceptIsError, acceptError, cancelLoading, canceIsError, cancelSuccess, cancelError])
 
   return (
     <section>
@@ -53,7 +75,7 @@ const OnGoingTask = (props) => {
 <div className="">
 
     <button onClick={Accept} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-4 rounded-lg border-[1px] bg-[#052C5B] '>Submit Task</button> 
-    <button onClick={Accept} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-4 rounded-lg border-[1px] bg-red '>Cancel Task</button> 
+    <button onClick={Cancel} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-4 rounded-lg border-[1px] bg-red '>Cancel Task</button> 
 </div>
     
     : <p className='text-[14px] pl-6'>In Review</p>
