@@ -130,15 +130,6 @@ const PendingTaskNotification = (props) => {
       })
     
     
-        // const { config : cancelConfig } = usePrepareContractWrite({
-        //   address: '0x75c5C6E08C2Cd06C7fB6a484a1d7C8d6901d4B65',
-        //   abi: escrowAbi,
-        //   functionName: 'approveCancel',
-        //   args: [props.id]
-        // })
-        // const { data: ApproveCancelData, isLoading, isSuccess, write: approveCancel } = useContractWrite(cancelConfig)
-      
-    
     
     
         useEffect(()=>{
