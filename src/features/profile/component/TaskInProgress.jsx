@@ -20,6 +20,14 @@ const TaskInProgress = (props) => {
         //   // queryClient.invalidateQueries("")
         // }
       })
+      const {mutate: approve, isLoading:approveLoading, isSuccess: approveSuccess, isError:approveIsError, error: approveError, } = useMutation({
+        mutationFn:(data)=>{
+          return axios.post(`${BASE_URL}/approve_abort`,data, config)
+        },
+        //  onSuccess:() =>{
+        //   // queryClient.invalidateQueries("")
+        // }
+      })
 
       const Accept = (e) =>{
         e.preventDefault()
@@ -32,18 +40,32 @@ const TaskInProgress = (props) => {
             accept({task_id:props.id, address:props.address, status:0})
 
         }
+        const Approve =(e)=>{
+            e.preventDefault();
+            approve({task_id:props.id, address:props.address, developer_address:props.developer_address})
+
+        }
 
     useEffect(()=>{
         if(acceptLoading){
             toast.info("submitting task",)
         }
         if(acceptSuccess){
-            toast.success("task submitted for review")
+          toast.success("task submitted for review")
         }
         if(acceptIsError){
-            toast.error(acceptError?.response?.data?.error)
+          toast.error(acceptError?.response?.data?.error)
         }
-    },[acceptLoading, acceptSuccess, acceptIsError, acceptError])
+        if(approveLoading){
+            toast.info("Approving Cancel",)
+        }
+        if(approveSuccess){
+          toast.success("Canceled Approved")
+        }
+        if(approveIsError){
+          toast.error(approveError?.response?.data?.error)
+        }
+    },[acceptLoading, acceptSuccess, acceptIsError, acceptError, approveLoading, approveSuccess, approveError, approveIsError])
 
   return (
     <section>
@@ -62,6 +84,11 @@ props.completed &&
     <button onClick={Accept} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-2 rounded-lg border-[1px] bg-[#052C5B] '> Accept Submition</button>
     <button onClick={Reject} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-4 rounded-lg border-[1px] bg-red '> Reject Submition</button>
 </div>
+}
+
+{
+  props.aborted &&
+  <button onClick={Approve} className='text-[#FFFFFF] mt-4 ml-6 py-2 px-4 rounded-lg border-[1px] bg-red '> Aprove Cancel</button>
 }
     </div>
     </div>

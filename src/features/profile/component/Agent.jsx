@@ -52,7 +52,9 @@ const Agent = () => {
     data?.map((data)=>(
         <>
     {
-        data.abort  === true && data.refund ===false &&
+
+        data.finalized  === false && data.refund ===true && data.buyer_abort &&
+
         <ReturnFund title={data.title} description={data.description}  id={data.id} address={data.developer_address} key={data.id} completed={data.completed} developer_address={data.developer_address} buyer_address={data.buyer_address} freelancer={data.developer.username} buyer={data.buyer.username} agent_address={data.agent_address}/>
     }
         </>
