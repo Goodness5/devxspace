@@ -1,5 +1,5 @@
 /** @format */
-import { useState } from "react";
+import { useState, useEffect } from 'react'
 import Image from "next/image";
 import avatar from "../../../images/avatar.png";
 import { FiMap, FiAlertCircle, FiCheckCircle } from "react-icons/fi";
@@ -10,21 +10,38 @@ import useFetchProfile from "../hooks/useFetchProfile";
 import { BASE_URL } from "../../../utils/Api";
 import TaskNotification from "./TaskNotification";
 import BuyerTask from "./BuyerTask";
-import { Switch } from "@headlessui/react";
+import { Switch } from '@headlessui/react'
+import PendingTask from './PendingTask';
+import Agent from './Agent';
+import ClipLoader from "react-spinners/ClipLoader";
 
-import PendingTask from "./PendingTask";
-import Agent from "./Agent";
 
 const ProfileDashboard = () => {
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState(false)
+  const [showSpinner, setShowSpinner] = useState(false)
+  const {address} = useAccount();
 
-  const { address } = useAccount();
+  const {data, isLoading, isError, error, refetch} = useFetchProfile(address);
 
-  const { data, isLoading, isError, error, refetch } = useFetchProfile(address);
+  console.log("llll", "https://iamsuperman.pythonanywhere.com/" + data?.avatar);
+  // const image = ``;
 
+  useEffect(() => {
+    if(!data){
+      setShowSpinner(!showSpinner)
+    }
+  },[data])
+  
   return (
-    <main className="w-[100%]  pb-10  bg-[#EFF2F9]">
-      <div className="flex tabletAir:flex-col w-[90%] justify-between mx-auto">
+    <main className="w-[100%] flex justify-center pb-10  bg-[#EFF2F9]">
+      {!data ? <div className="w-[100%] flex justify-center pb-10  bg-[#EFF2F9] h-[40%]" ><ClipLoader
+        // color={"#ffffff"}
+        loading={showSpinner}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        className=' mt-48'
+      /> </div>:<div className="flex tabletAir:flex-col w-[90%] justify-between mx-auto">
         <section className="w-[20%] smDesktop:w-[24%] smDesk:w-[28%] tabletAir:w-[100%] tabletAir:flex mobile:flex-col tabletAir:items-center mt-[-40px] tabletAir:h-[400px] relative">
           <div className=" border-[1px] border-[white] w-[100%]  bg-[white] h-[300px] tabletAir:h-[350px] py-[25px] rounded-lg">
             
@@ -74,7 +91,7 @@ const ProfileDashboard = () => {
             </h2>
           </div>
           <div className=" flex justify-between mt-5">
-            <div className="w-[30%] h-[100px] flex gap-2 items-center bg-[white] rounded-lg pl-6">
+            {/* <div className="w-[30%] h-[100px] flex gap-2 items-center bg-[white] rounded-lg pl-6">
               <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-[#1BAF65] ">
                 <FiCheckCircle size={20} className="text-[#EAD5FF]" />
               </div>
@@ -130,7 +147,7 @@ const ProfileDashboard = () => {
                 <h2 className="text-[22px] font-bold">1</h2>
                 <p className="text-[14px] font-normal">Total Locked</p>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="">
 
@@ -169,7 +186,7 @@ const ProfileDashboard = () => {
             </div>
           </div>
         </section>
-      </div>
+      </div>}
     </main>
   );
 };

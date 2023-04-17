@@ -10,6 +10,7 @@ import escrowAbi from "../../../utils/escrowAbi.json";
 import token_abi from "../../../utils/token_abi.json";
 import { ethers } from 'ethers';
 import useHireDev from '../../services/hooks/useHireDev';
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 const PendingTaskNotification = (props) => {
@@ -17,7 +18,10 @@ const PendingTaskNotification = (props) => {
     const {mutate, isLoading, isError, error, isSuccess} = useHireDev()
     const [isActive, setIsActive] = useState(false);
     const [allowance, setAllowance] = useState(0);
-   
+    let [spinloading, setSpinLoading] = useState(false);
+    let [tokenSpinLoading, setTokenSpinLoading] = useState(false);
+    let [approvalLoading, setApprovalLoading] = useState(false);
+    
    
     //For ETH payment
     const { config: depositByETHConfig} = usePrepareContractWrite({
@@ -31,9 +35,9 @@ const PendingTaskNotification = (props) => {
       },
       args: [props.developer_address, "0x2e767b4A3416Ef16458355EFAcec7d3228Cec08C"],
     })    
-  const { data:payEthdata, isLoading : payETHisLoad, isSuccess:payEthisSucc, write:depositByETH } = useContractWrite(depositByETHConfig)
+  const { data:payEthdata, isLoading : payETHisLoad, isError:ethPayError, isSuccess:payEthisSucc, write:depositByETH } = useContractWrite(depositByETHConfig)
   
-  const {data: payEthWaitData, isLoading: payEthdataWaitLoading, isSuccess : ispayEthdataSuccess} = useWaitForTransaction({
+  const {data: payEthWaitData, isLoading: payEthdataWaitLoading, isError: isPayETHIsError, isSuccess : ispayEthdataSuccess} = useWaitForTransaction({
     hash: payEthdata?.hash,
     onSuccess(data) {
       const poolID = parseInt((data.logs[0].data.slice(-64)),16);
@@ -57,7 +61,7 @@ const PendingTaskNotification = (props) => {
     functionName: 'approve',
     args: ['0x75c5C6E08C2Cd06C7fB6a484a1d7C8d6901d4B65', ethers.utils.parseEther(String(props.price))]
   })
-  const { data:approveData, isLoading: approveIsLoading, isSuccess: approveIsSuccess, write: approve } = useContractWrite(writeApproveConfig);
+  const { data:approveData, isLoading: approveIsLoading, isError: isApproveError, isSuccess: approveIsSuccess, write: approve } = useContractWrite(writeApproveConfig);
 
   const {data: approveWaitData, isLoading: approveWaitLoading, isSuccess : isapproveSuccess} = useWaitForTransaction({
     hash: approveData?.hash,
@@ -78,7 +82,7 @@ const PendingTaskNotification = (props) => {
     functionName:'deposit',
     args: ["0x101E72De70FffA3155A1eF90B78E78C670899a1a", props.developer_address, "0x2e767b4A3416Ef16458355EFAcec7d3228Cec08C", ethers.utils.parseEther(String(props.price))],
     })    
-  const { data:payToken, isLoading : payTokenisLoad, isSuccess:payTKisSucc, write:deposit} = useContractWrite(depositTokenConfig)
+  const { data:payToken, isLoading : payTokenisLoad, isError: isTokenPayError, isSuccess:payTKisSucc, write:deposit} = useContractWrite(depositTokenConfig)
 
   const {data: payTokenWaitData, isLoading: payTokendataWaitLoading, isSuccess : ispayTokendataSuccess} = useWaitForTransaction({
     hash: payToken?.hash,
@@ -104,9 +108,9 @@ const PendingTaskNotification = (props) => {
   const AcceptTokenPay = (e) =>{
     e.preventDefault()
     if(allowance >= ethers.utils.parseEther(String(props.price))){
-      deposit();
+      deposit?.();
     }else if (allowance < ethers.utils.parseEther(String(props.price))){
-      approve();
+      approve?.();
     }
   }
   
@@ -160,9 +164,26 @@ const PendingTaskNotification = (props) => {
             }
             if(allowData){
               setAllowance(Number(allowData));
-            
             }
-        },[acceptLoading, acceptSuccess, acceptIsError, rejectLoading, rejectSuccess, rejectIsError, rejectError, isError, error, allowData])
+            if(payETHisLoad && !ispayEthdataSuccess){
+              setSpinLoading(true);
+            }
+            if(ispayEthdataSuccess || ethPayError){
+              setSpinLoading(false);
+            }
+            if(payTokenisLoad && !ispayTokendataSuccess){
+              setTokenSpinLoading(true);
+            }
+            if(ispayTokendataSuccess || isTokenPayError){
+              setTokenSpinLoading(false);
+            }
+            if(approveIsLoading && !isapproveSuccess){
+              setApprovalLoading(true)
+            }
+            if(isapproveSuccess || isApproveError){
+              setApprovalLoading(false)
+            }
+        },[approveIsLoading,isapproveSuccess, isApproveError, ispayEthdataSuccess,payTokenisLoad, ispayTokendataSuccess,isTokenPayError, ethPayError, payETHisLoad, acceptLoading, acceptSuccess, acceptIsError, rejectLoading, rejectSuccess, rejectIsError, rejectError, isError, error, allowData])
     
       return (
         <div className="w-[94%] mx-auto">
@@ -178,9 +199,22 @@ const PendingTaskNotification = (props) => {
             </div>
                 { props.accepted &&
              <div className=" flex gap-3 ">
-
-    <button onClick={AcceptETHpay}  className='text-[12px] bg-fair-blue rounded-lg h-[40px] px-4 text-[#FFFFFF] '>Pay With Eth</button>
-    <button onClick={AcceptTokenPay} className='text-[12px] bg-red rounded-lg h-[40px] px-4 text-[#FFFFFF] '>{allowance < ethers.utils.parseEther(String(props.price)) ? "Approve DXC" : "Pay With DXC"}</button>
+    <button onClick={AcceptETHpay}  className='text-[12px] bg-fair-blue rounded-lg h-[40px] px-4 text-[#FFFFFF] '> {spinloading ? <ClipLoader
+        color={"#ffffff"}
+        loading={spinloading}
+        size={25}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      /> : "Pay With Eth"}</button>
+    <button onClick={AcceptTokenPay} className='text-[12px] bg-red rounded-lg h-[40px] px-4 text-[#FFFFFF] '> 
+    { tokenSpinLoading || approvalLoading ? <ClipLoader
+        color={"#ffffff"}
+        loading={approvalLoading ? approvalLoading : tokenSpinLoading}
+        size={25}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      /> :
+      allowance < ethers.utils.parseEther(String(props.price)) ? "Approve DXC" : "Pay With DXC"}</button>
  
             </div>
                 }
