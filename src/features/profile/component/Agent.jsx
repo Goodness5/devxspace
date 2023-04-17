@@ -8,7 +8,7 @@ import useFetchAgentTask from "../hooks/useFetchAgentTask";
 const Agent = () => {
     const {address} =useAccount()
     const {data} = useFetchAgentTask(address)
-    console.log("agent Task",data);
+    console.log("agent Taskddd",data);
   return (
     <section className="mt-4">
       <section className="flex gap-4">
