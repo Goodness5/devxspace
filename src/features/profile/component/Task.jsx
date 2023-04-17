@@ -5,6 +5,7 @@ import OnGoingTask from "./OnGoingTask";
 import useFetchOngoinTask from "../hooks/useFetchOngoinTask";
 import { useAccount } from "wagmi";
 import useFetchAllTask from "../hooks/useFetchAllTask";
+import CompletedTask from "./CompletedTask";
 
 const Task = () => {
     const {address} =useAccount()
@@ -50,8 +51,9 @@ const Task = () => {
     allFetch?.map((data)=>(
 <>
 {data.fund_released
- &&
-<OnGoingTask title={data.title} description={data.description}  id={data.task_id} address={data.developer_address} key={data.task_id} completed={data.completed} developer_address={data.developer_address} buyer_address={data.buyer_address}/>
+ && data.completed &&
+
+<CompletedTask title={data.title} description={data.description}  id={data.task_id} address={data.developer_address} key={data.task_id}  developer_address={data.developer_address} buyer_address={data.buyer_address} />
  }
 </>
     ))
