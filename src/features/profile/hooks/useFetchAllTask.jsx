@@ -1,11 +1,12 @@
 
+
 import { BASE_URL } from '../../../utils/Api'
 import axios from 'axios'
 import { useQuery } from 'react-query'
 
-const useFetchAgentTask = (address) => {
+const useFetchAllTask = (address) => {
     // /ongoing_tasks/<address>
-    const API = `${BASE_URL}/agent_tasks/${address}`
+    const API = `${BASE_URL}/agent/dashboard/${address}`
 
     const config ={
         headers:{
@@ -17,11 +18,11 @@ const useFetchAgentTask = (address) => {
         return axios.get(API, config).then((res)=>res.data)
     }
     const { data, isLoading, isError, error, refetch } = useQuery(
-        ["agent"],
+        ["fetchAllTask "],
         getProfile,
         {}
       );
       return{data, isLoading, isError, error, refetch};
 }
 
-export default useFetchAgentTask
+export default useFetchAllTask
