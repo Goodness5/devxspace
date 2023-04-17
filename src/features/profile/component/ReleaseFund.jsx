@@ -3,8 +3,12 @@ import React, { useEffect } from 'react'
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { BASE_URL } from '../../../utils/Api';
+import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction, useContractRead } from 'wagmi';
+import escrowAbi from '../../../utils/escrowAbi.json'
+
 
 const ReleaseFund = (props) => {
+  const {address} = useAccount('')
     const config = {
         headers: {
           "Content-Type": "application/json",
@@ -16,17 +20,36 @@ const ReleaseFund = (props) => {
         mutationFn:(data)=>{
           return axios.post(`${BASE_URL}/agent/release_fund`,data, config)
         },
-        //  onSuccess:() =>{
-        //   // queryClient.invalidateQueries("")
-        // }
       })
       
 
       const Accept = (e) =>{
         e.preventDefault()
-        
-        accept({task_id:props.id, agent_address:props.agent_address})
+        release();;
     }
+
+
+    const { config : releaseConfig } = usePrepareContractWrite({
+      address: '0x75c5C6E08C2Cd06C7fB6a484a1d7C8d6901d4B65',
+      abi: escrowAbi,
+      functionName: 'release',
+      args: [props.id],
+    })
+    const { data : releaseData, isLoading: isLoadingData, isSuccess : isSuccessData, write : release } = useContractWrite(releaseConfig)
+
+    const {data: releasWaitData, isLoading: releaseDataWaitLoading, isSuccess : releaseDataSuccess} = useWaitForTransaction({
+      hash: releaseData?.hash,
+      onSuccess(data) {
+        console.log(data);
+        accept({task_id:props.id, agent_address:props.agent_address});
+      },
+      onError(error) {
+        console.log(error);
+      },
+    }) 
+
+
+
 
 
     useEffect(()=>{
