@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Connect from "./Connect";
 import Link from 'next/link';
-
+import { useAccount } from "wagmi";
 import Image from 'next/image';
 import logo from "../images/devlogo.png"
 import Update from "./Update";
 import CreateGig from "./CreateGig";
 
 const Navbar = () => {
+  const {address} = useAccount();
   const [showUpdateProfile, setShowUpdateProfile] = useState(false);
   const [open, setOpen] = useState(false);
   const [showCreateGig, setCreateGig] = useState(false);
@@ -40,12 +41,12 @@ const Navbar = () => {
             <Image src={logo} className='w-[250px] h-[100px] object-cover'/>
             </Link>      
 
-            <div className="flex items-center gap-6 text-[16px] font-medium capitalize">
+            {address && <div className="flex items-center gap-6 text-[16px] font-medium capitalize">
           
-          {<Link href='/' className="flex items-center cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px] ">
+          <Link href='/' className="flex items-center cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px] ">
 
           Home
-        </Link>}
+        </Link>
 
         <Link href='/profile' className="cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px] ">
           Dashboard
@@ -61,7 +62,7 @@ const Navbar = () => {
         <div onClick={handleUpdateProfileClick} className=" cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px]" >
          Create Profile
         </div>
-              </div> 
+              </div> }
       
 
 
