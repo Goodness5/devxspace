@@ -15,8 +15,8 @@ const Task = () => {
     console.log("Fetch Task",allFetch);
   return (
     <section className="mt-4">
-      <section className="flex gap-4">
-        <div className="bg-[#FFFFFF] w-[50%] rounded-lg ">
+      <section className="flex gap-4 mobile:flex-col">
+        <div className="bg-[#FFFFFF] w-[50%] mobile:w-[100%] rounded-lg ">
           <h3 className="text-[14px] leading-5  pb-4 pt-4 font-semibold border-b-[1px] border-[#EFF2F9] text-[#1A274E] pl-6">
             onGoing Task
           </h3>
@@ -36,7 +36,7 @@ const Task = () => {
            )}
         </div>
 
-        <div className="bg-[#FFFFFF] w-[50%] rounded-lg ">
+        <div className="bg-[#FFFFFF] w-[50%] mobile:w-[100%] rounded-lg ">
           <h3 className="text-[14px] leading-5  pb-4 pt-4 font-semibold border-b-[1px] border-[#EFF2F9] text-[#1A274E] pl-6">
             completed Task
           </h3>
