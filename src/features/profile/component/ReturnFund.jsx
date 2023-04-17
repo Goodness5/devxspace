@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { BASE_URL } from '../../../utils/Api';
+import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction, useContractRead } from 'wagmi';
+import escrowAbi from '../../../utils/escrowAbi.json'
 
 const ReturnFund = (props) => {
     const config = {
@@ -25,9 +27,32 @@ const ReturnFund = (props) => {
   
       const Cancel = (e) =>{
         e.preventDefault()
-        
-        cancel({task_id:props.id, agent_address:props.agent_address,})
+        cancelPool();
     }
+
+
+    const { config : AgentcancelConfig } = usePrepareContractWrite({
+        address: '0x75c5C6E08C2Cd06C7fB6a484a1d7C8d6901d4B65',
+        abi: escrowAbi,
+        functionName: 'cancel',
+        args: [props.id]
+      })
+      const { data: AgCancelData, isLoading, isSuccess, write: cancelPool } = useContractWrite(AgentcancelConfig);
+      
+      const {data: AgCancellWaitData, isLoading: AppcancelWaitLoading, isSuccess : AppcancelaSuccess} = useWaitForTransaction({
+        hash: AgCancelData?.hash,
+        onSuccess(data) {
+          console.log(data);
+        cancel({task_id:props.id, agent_address:props.agent_address,})
+        },
+        onError(error) {
+          console.log(error);
+        },
+      }) 
+
+
+
+
 
     useEffect(()=>{
        

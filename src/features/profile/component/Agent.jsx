@@ -8,7 +8,7 @@ import useFetchAgentTask from "../hooks/useFetchAgentTask";
 const Agent = () => {
     const {address} =useAccount()
     const {data} = useFetchAgentTask(address)
-    console.log("agent Task",data);
+    console.log("agent Taskddd",data);
   return (
     <section className="mt-4">
       <section className="flex gap-4">
@@ -53,7 +53,7 @@ const Agent = () => {
         <>
     {
 
-        data.finalized  === false && data.refund ===true && data.buyer_abort &&
+        data.finalized  === false && data.abort ===true && data.buyer_abort && data.refund === false &&
 
         <ReturnFund title={data.title} description={data.description}  id={data.id} address={data.developer_address} key={data.id} completed={data.completed} developer_address={data.developer_address} buyer_address={data.buyer_address} freelancer={data.developer.username} buyer={data.buyer.username} agent_address={data.agent_address}/>
     }
