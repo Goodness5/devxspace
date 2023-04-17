@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { BASE_URL } from '../../../utils/Api';
-import {usePrepareContractWrite, useContractWrite} from 'wagmi'
+import {usePrepareContractWrite, useContractWrite, useWaitForTransaction} from 'wagmi'
 import escrowAbi from '../../../utils/escrowAbi.json'
 
 const OnGoingTask = (props) => {
@@ -18,17 +18,11 @@ const OnGoingTask = (props) => {
         mutationFn:(data)=>{
           return axios.post(`${BASE_URL}/tasks/submit`,data, config)
         },
-        //  onSuccess:() =>{
-        //   // queryClient.invalidateQueries("")
-        // }
       })
       const {mutate: cancel, isLoading:cancelLoading, isSuccess: cancelSuccess, isError:canceIsError, error: cancelError} = useMutation({
         mutationFn:(data)=>{
           return axios.post(`${BASE_URL}/abort`,data, config)
         },
-        //  onSuccess:() =>{
-        //   // queryClient.invalidateQueries("")
-        // }
       })
 
       const Accept = (e) =>{
@@ -40,8 +34,6 @@ const OnGoingTask = (props) => {
         e.preventDefault()
 
         approveCancel()
-
-        cancel({task_id:props.id, address:props.buyer_address, developer_address:props.developer_address})
     }
 
      const { config : cancelConfig } = usePrepareContractWrite({
@@ -51,6 +43,17 @@ const OnGoingTask = (props) => {
           args: [props.id]
         })
         const { data: ApproveCancelData, isLoading, isSuccess, write: approveCancel } = useContractWrite(cancelConfig)
+
+        const {data: AppcancelWaitData, isLoading: AppcancelWaitLoading, isSuccess : AppcancelaSuccess} = useWaitForTransaction({
+          hash: ApproveCancelData?.hash,
+          onSuccess(data) {
+            console.log(data);
+            cancel({task_id:props.id, address:props.buyer_address, developer_address:props.developer_address})
+          },
+          onError(error) {
+            console.log(error);
+          },
+        }) 
 
 
     useEffect(()=>{

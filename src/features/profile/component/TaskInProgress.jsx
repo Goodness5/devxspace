@@ -3,6 +3,8 @@ import { useMutation } from 'react-query';
 import { BASE_URL } from '../../../utils/Api';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction, useContractRead } from 'wagmi';
+import escrowAbi from '../../../utils/escrowAbi.json'
 
 const TaskInProgress = (props) => {
     const config = {
@@ -42,9 +44,27 @@ const TaskInProgress = (props) => {
         }
         const Approve =(e)=>{
             e.preventDefault();
-            approve({task_id:props.id, address:props.address, developer_address:props.developer_address})
-
+            approveCancel();
         }
+
+        const { config : buyercancelConfig } = usePrepareContractWrite({
+          address: '0x75c5C6E08C2Cd06C7fB6a484a1d7C8d6901d4B65',
+          abi: escrowAbi,
+          functionName: 'approveCancel',
+          args: [props.id]
+        })
+        const { data: ApproveCancelData, isLoading, isSuccess, write: approveCancel } = useContractWrite(buyercancelConfig);
+        
+        const {data: AppcancelWaitData, isLoading: AppcancelWaitLoading, isSuccess : AppcancelaSuccess} = useWaitForTransaction({
+          hash: ApproveCancelData?.hash,
+          onSuccess(data) {
+            console.log(data);
+            approve({task_id:props.id, address:props.address, developer_address:props.developer_address})
+          },
+          onError(error) {
+            console.log(error);
+          },
+        }) 
 
     useEffect(()=>{
         if(acceptLoading){
