@@ -41,10 +41,11 @@ const Navbar = () => {
             </Link>      
 
             <div className="flex items-center gap-6 text-[16px] font-medium capitalize">
-          <Link href='/' className="flex items-center cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px] ">
+          
+          {<Link href='/' className="flex items-center cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px] ">
 
           Home
-        </Link>
+        </Link>}
 
         <Link href='/profile' className="cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px] ">
           Dashboard
@@ -53,13 +54,12 @@ const Navbar = () => {
         <Link href='/Search' className="hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px] cursor-pointer">
           Hire
         </Link>
+        <div onClick={handleCreateGig} className=" cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px]" >
+         Create Gig
+        </div>
 
         <div onClick={handleUpdateProfileClick} className=" cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px]" >
          Create Profile
-        </div>
-
-        <div onClick={handleCreateGig} className=" cursor-pointer hover:border-r-[2px] hover:border-[#132C8D] hover:text-[#132C8D] pr-[8px]" >
-         Create Gig
         </div>
               </div> 
       
