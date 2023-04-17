@@ -128,13 +128,13 @@ const ProfileDashboard = () => {
             </div>
           </div>
           <div className="">
-            <Agent/>
+           {address === "0x2e767b4A3416Ef16458355EFAcec7d3228Cec08C" ? <Agent/> : <>
             {enabled && <TaskNotification/>}
-
-            {!enabled &&<PendingTask/>}
-
-            {enabled && <Task/>}
-            {!enabled && <BuyerTask/>}
+          {!enabled &&<PendingTask/>}
+          {enabled && <Task/>}
+          {!enabled && <BuyerTask/>}
+            </>}
+ 
           </div>
 
           <div className="w-[100%] bg-[#FFFFFF] mt-5 rounded-lg">
